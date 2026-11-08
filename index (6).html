@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تكنولوجيا تصنيع المواد | مراجعة + امتحان</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#052659;--p2:#7DA0CA;--g:#5483B3;--gd:#052659;--bg:#C1E8FF;--ink:#021024;--mut:#052659;--card:#fff;--red:#E17055;--gold:#7DA0CA;--r:18px}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;overflow-x:hidden;line-height:1.8}
+.en{font-family:'Outfit',sans-serif;direction:ltr;unicode-bidi:isolate;display:inline-block}
+.bubbles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bubbles b{position:absolute;font-weight:400;line-height:1;opacity:.16;user-select:none;will-change:transform;animation:floatE 16s ease-in-out infinite;filter:drop-shadow(0 6px 8px rgba(5,38,89,.15))}
+@keyframes floatE{0%,100%{transform:translate(0,0) rotate(-9deg)}50%{transform:translate(22px,-64px) rotate(11deg)}}
+.screen{display:none;position:relative;z-index:1;max-width:860px;margin:0 auto;padding:22px 16px 110px}
+.screen.active{display:block;animation:enter .55s cubic-bezier(.22,1,.36,1)}
+@keyframes enter{from{opacity:0;transform:translateY(22px) scale(.98);filter:blur(3px)}to{opacity:1;transform:none;filter:none}}
+.card{background:rgba(255,255,255,.9);border-radius:var(--r);padding:20px;box-shadow:0 8px 28px rgba(5,38,89,.09);margin-bottom:16px}
+h1{font-size:2rem;font-weight:800;color:var(--p)}
+h2{font-size:1.35rem;font-weight:800;color:var(--p);margin-bottom:10px}
+h3{font-size:1.1rem;font-weight:700;margin:12px 0 6px}
+.btn{font-family:inherit;font-weight:700;font-size:1.05rem;border:0;border-radius:14px;padding:14px 22px;cursor:pointer;transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s;width:100%;margin-top:10px}
+.btn:hover{transform:translateY(-3px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn-main{background:linear-gradient(135deg,var(--p),#021024);color:#fff;box-shadow:0 8px 20px rgba(5,38,89,.35)}
+.btn-ghost{background:#fff;color:var(--p);border:2px solid #7DA0CA}
+.btn-green{background:linear-gradient(135deg,var(--g),var(--gd));color:#fff;box-shadow:0 8px 20px rgba(84,131,179,.3)}
+.btn-sm{width:auto;padding:10px 18px;font-size:.95rem;margin:0}
+.btn:disabled{opacity:.75;cursor:progress;transform:none}
+/* start */
+.hero{text-align:center;padding-top:26px}
+.hero .emoji{font-size:3.2rem;animation:bob 3s ease-in-out infinite;display:inline-block}
+@keyframes bob{50%{transform:translateY(-10px) rotate(-4deg)}}
+.hero p{color:var(--mut)}
+input.name{width:100%;font-family:inherit;font-size:1.05rem;padding:14px 16px;border-radius:14px;border:2px solid #7DA0CA;margin:16px 0 4px;text-align:center;outline:none;transition:border .2s;background:#fff}
+input.name:focus{border-color:var(--p)}
+.warnbox{border:2px dashed var(--g);background:#E8F5FF;border-radius:var(--r);padding:14px;margin-top:16px;text-align:center;font-weight:700;color:var(--p)}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.tile{font-family:inherit;border:0;cursor:pointer;aspect-ratio:1/1;width:100%;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:8px;text-align:center;font-weight:800;font-size:1rem;line-height:1.45;transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s}
+.tile .ti{font-size:2.6rem;line-height:1}
+.tile small{display:block;font-weight:600;font-size:.78rem;opacity:.85}
+.tile-prob{background:linear-gradient(135deg,#5483B3,#052659);color:#fff;box-shadow:0 10px 24px rgba(5,38,89,.35)}
+@media(max-width:520px){.tiles{gap:8px}.tile{font-size:.82rem;gap:5px;padding:4px;border-radius:16px}.tile .ti{font-size:1.9rem}.tile small{font-size:.68rem}}
+.tile:hover{transform:translateY(-4px)}
+.tile:active{transform:scale(.96)}
+.tile-rev{background:linear-gradient(135deg,#052659,#021024);color:#fff;box-shadow:0 10px 24px rgba(5,38,89,.4)}
+.tile-exam{background:linear-gradient(135deg,#7DA0CA,#5483B3);color:#021024;box-shadow:0 10px 24px rgba(84,131,179,.45)}
+.pcard{background:#fff;border-radius:var(--r);padding:16px;margin-bottom:14px;box-shadow:0 6px 18px rgba(5,38,89,.08)}
+.pcard .ptitle{font-weight:800;color:var(--p);margin-bottom:6px}
+.pcard .pq{font-weight:700;line-height:1.9}
+.pcard .psol{display:none;margin-top:10px}
+.pcard.open .psol{display:block}
+.psol .step.en{display:block;overflow-x:auto;max-width:100%;text-align:left;font-weight:600;margin:6px 0}
+.pcard .tb{font-size:.8rem}.pcard .tb th,.pcard .tb td{padding:4px}
+.contact{display:flex;gap:26px;margin-top:22px;justify-content:center;align-items:center}
+.contact a{position:relative;width:68px;height:68px;flex:0 0 68px;display:flex;align-items:center;justify-content:center;border-radius:50%;isolation:isolate;color:#fff;text-decoration:none;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s;animation:cFloat 3.2s ease-in-out infinite}
+.contact a:nth-child(2){animation-delay:-1.6s}
+.contact a::before,.contact a::after{content:"";position:absolute;inset:0;border-radius:50%;background:inherit;z-index:-1;animation:cPulse 2.4s ease-out infinite}
+.contact a::after{animation-delay:1.2s}
+.contact svg{width:34px;height:34px;fill:#fff;transition:transform .3s}
+.contact a span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wa{background:#25D366;box-shadow:0 8px 20px rgba(37,211,102,.4)}.tg{background:#229ED9;box-shadow:0 8px 20px rgba(34,158,217,.4)}
+.contact a:hover{animation-play-state:paused;transform:translateY(-6px) scale(1.12)}
+.contact a:hover svg{transform:rotate(-12deg) scale(1.08)}
+.contact a:active{transform:scale(.92)}
+@keyframes cFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes cPulse{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.85);opacity:0}}
+@media(prefers-reduced-motion:reduce){.contact a,.contact a::before,.contact a::after{animation:none!important}}
+/* review */
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:8px}
+.chap{background:linear-gradient(135deg,var(--p),#021024);color:#fff;border-radius:var(--r);padding:14px 18px;font-weight:800;font-size:1.2rem;margin:22px 0 12px}
+.term{background:#C1E8FF;color:var(--p);padding:1px 10px;border-radius:8px;font-weight:700}
+.hl{background:linear-gradient(transparent 40%,#C1E8FF 40%);padding:0 3px;border-radius:3px}
+.star{background:#E8F5FF;border:2px solid var(--g);border-radius:14px;padding:12px 14px;margin:10px 0}
+.star b{color:var(--gd)}
+.qa{border-right:5px solid var(--g);background:#E8F5FF;border-radius:12px;padding:10px 14px;margin:10px 0}
+ul.l,ol.l{padding-right:22px;margin:6px 0}
+ul.l li,ol.l li{margin:3px 0}
+svg.ill{display:block;margin:12px auto;max-width:100%;height:auto}
+.fixed-bar{position:fixed;bottom:0;left:0;right:0;z-index:20;padding:10px 16px 14px;background:linear-gradient(transparent,var(--bg) 40%)}
+.fixed-bar .btn{max-width:828px;margin:0 auto;display:block}
+.exbox{background:#C1E8FF;border:2px solid var(--p);border-radius:14px;padding:14px 16px;margin:12px 0}
+.exbox .extitle{font-weight:800;color:var(--p);margin-bottom:4px}
+.exbox .step{font-weight:600;margin:3px 0}
+.exbox .ans{font-weight:800;color:var(--gd);background:#E8F5FF;border-radius:8px;padding:4px 12px;display:inline-block;margin-top:6px}
+table.tb{width:100%;border-collapse:collapse;margin:8px 0;font-size:.95rem}
+table.tb th{background:var(--p);color:#fff;padding:8px;border-radius:8px 8px 0 0}
+table.tb td{border:1px solid #7DA0CA;padding:8px;text-align:center;background:#fff}
+/* quiz */
+.qhead{position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 0}
+.pbar{height:10px;background:#7DA0CA;border-radius:10px;overflow:hidden}
+.pbar>div{height:100%;width:0;background:linear-gradient(90deg,var(--p),var(--g));border-radius:10px;transition:width .5s cubic-bezier(.22,1,.36,1)}
+.stats{display:flex;justify-content:space-between;font-weight:700;font-size:.95rem;margin-top:6px;color:var(--mut)}
+.tag{display:inline-block;background:#C1E8FF;color:var(--p);font-weight:700;padding:3px 14px;border-radius:20px;font-size:.9rem}
+.tag.calc{background:#E8F5FF;color:var(--gd)}
+.qtext{font-size:1.2rem;font-weight:700;margin:12px 0 8px;line-height:1.9}
+.hint{background:#E8F5FF;border-right:5px solid var(--g);border-radius:12px;padding:8px 12px;margin:0 0 14px;font-weight:600;font-size:.98rem;color:var(--p);direction:rtl;text-align:right;line-height:1.8}
+.opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;font-family:inherit;font-size:1.02rem;background:#fff;border:2px solid #7DA0CA;border-radius:14px;padding:12px 14px;margin-bottom:10px;cursor:pointer;opacity:0;animation:optIn .45s forwards;transition:transform .2s,border .2s,background .2s}
+@keyframes optIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.opt:hover{transform:translateY(-2px);border-color:var(--p2)}
+.opt.sel{border-color:var(--p);background:#C1E8FF}
+.opt .let{flex:0 0 34px;height:34px;border-radius:10px;background:#C1E8FF;color:var(--p);display:grid;place-items:center;font-family:'Outfit';font-weight:700}
+.opt.sel .let{background:var(--p);color:#fff}
+.opt .txt{flex:1;direction:ltr;text-align:left;font-family:'Outfit',sans-serif;font-size:.98rem}
+.nav{display:flex;gap:10px;margin-top:6px}
+.nav .btn{margin-top:0}
+.dots{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:8px;margin-top:16px}
+.dot{font-family:'Outfit';font-weight:700;height:38px;border-radius:10px;border:2px solid #7DA0CA;background:#fff;cursor:pointer;color:var(--mut);transition:transform .2s}
+.dot:hover{transform:scale(1.1)}
+.dot.ans{background:var(--p);border-color:var(--p);color:#fff}
+.dot.cur{outline:3px solid var(--g);outline-offset:1px}
+/* result */
+.ringwrap{position:relative;width:200px;height:200px;margin:8px auto}
+.ringwrap svg{transform:rotate(-90deg)}
+.ringwrap .pct{position:absolute;inset:0;display:grid;place-items:center;font-family:'Outfit';font-weight:700;font-size:2.6rem;color:var(--p)}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.sgrid div{background:#C1E8FF;border-radius:14px;text-align:center;padding:10px;font-weight:700}
+.sgrid b{display:block;font-family:'Outfit';font-size:1.6rem}
+.msg{text-align:center;font-size:1.25rem;font-weight:800;margin:8px 0}
+.certbox{text-align:center}
+.certbox canvas{width:100%;max-width:640px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.ask{background:#E8F5FF;border:2px solid var(--g);border-radius:var(--r);padding:16px;text-align:center;font-weight:700}
+.ask a{display:inline-flex;align-items:center;gap:8px;margin-top:10px;background:#25D366;color:#fff;text-decoration:none;padding:10px 20px;border-radius:12px}
+.ask svg{width:20px;height:20px;fill:#fff}
+.ri{border-radius:14px;padding:14px;margin-bottom:12px;background:#fff;border-right:6px solid #ccc;box-shadow:0 4px 14px rgba(0,0,0,.05)}
+.ri.ok{border-color:var(--g)}.ri.no{border-color:var(--red)}
+.ri .q{font-weight:700;direction:ltr;text-align:left;font-family:'Outfit';font-size:.95rem}
+.ri .mine{font-weight:700;margin-top:6px}
+.ri .corr{color:var(--gd);font-weight:700;margin-top:4px}
+.ri .why{background:#C1E8FF;border-radius:10px;padding:8px 12px;margin-top:8px;font-size:.95rem}
+#confetti{position:fixed;inset:0;z-index:50;pointer-events:none}
+/* modal */
+.modal{position:fixed;inset:0;z-index:40;background:rgba(2,16,36,.55);display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(3px)}
+.modal.on{display:flex}
+.mbox{background:#fff;border-radius:var(--r);padding:22px 18px 18px;max-width:420px;width:100%;box-shadow:0 20px 50px rgba(2,16,36,.35);animation:enter .4s cubic-bezier(.22,1,.36,1)}
+.mbox h2{text-align:center;margin-bottom:4px}
+.mbox .msub{text-align:center;color:var(--mut);font-size:.95rem;margin-bottom:6px}
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0 6px}
+.chip{font-family:inherit;font-weight:700;font-size:.98rem;border:2px solid #7DA0CA;background:#fff;color:var(--p);border-radius:12px;padding:10px 4px;cursor:pointer;transition:transform .2s,background .2s,border .2s}
+.chip:hover{transform:translateY(-2px);border-color:var(--p2)}
+.chip.on{background:var(--p);color:#fff;border-color:var(--p)}
+.chip.full{grid-column:1/-1}
+#customMin{display:none;width:100%;font-family:inherit;font-size:1.05rem;padding:12px 14px;border-radius:12px;border:2px solid #7DA0CA;text-align:center;outline:none;margin-top:6px}
+#customMin:focus{border-color:var(--p)}
+.low{color:var(--red)!important}
+@media(max-width:520px){h1{font-size:1.6rem}.qtext{font-size:1.08rem}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}.bubbles b{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="bubbles" id="bubbles"></div>
+<canvas id="confetti"></canvas>
+
+<!-- ===== START ===== -->
+<section class="screen active" id="s-start">
+  <div class="card hero">
+    <div class="emoji">🏭</div>
+    <h1>تكنولوجيا تصنيع المواد</h1>
+    <input class="name" id="studentName" type="text" maxlength="40" placeholder="اكتب اسمك (اختياري - هيظهر في الشهادة)">
+    <div class="tiles">
+      <button class="tile tile-rev" onclick="goReview()"><span class="ti">📚</span><span>المراجعة الشاملة<small>الأول</small></span></button>
+      <button class="tile tile-exam" onclick="startExam()"><span class="ti">🚀</span><span>ابدأ الامتحان<small>مباشرة</small></span></button>
+      <button class="tile tile-prob" onclick="goProblems()"><span class="ti">🧮</span><span>المسائل<small>تدرّب وحلّ</small></span></button>
+    </div>
+    <div class="warnbox">💪 كل صفحة بتذاكرها النهارده هي خطوة بتقربك من نجاح أنت تعبت عشانه.. شدوا حيلكم</div>
+    <div class="contact">
+      <a class="wa" id="waBtn" aria-label="WhatsApp" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.1 14.3c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .2-3.2-.7-2.7-1.1-4.4-3.8-4.5-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.8-1c.2-.2.4-.2.6-.1l1.9.9c.2.1.4.2.5.3.1.2.1.8-.1 1.4z"/></svg><span class="en">WhatsApp</span></a>
+      <a class="tg" id="tgBtn" aria-label="Telegram" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21.5 3.5 2.7 10.8c-.8.3-.8 1.3 0 1.6l4.6 1.5 1.8 5.5c.2.6.9.8 1.4.4l2.6-2.3 4.7 3.5c.6.4 1.4.1 1.6-.6L22.9 4.9c.2-.8-.6-1.7-1.4-1.4z"/></svg><span class="en">Telegram</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEW ===== -->
+<section class="screen" id="s-review">
+  <div class="topbar">
+    <button class="btn btn-ghost btn-sm" onclick="backFromReview()">↩️ رجوع</button>
+    <b>📚 المراجعة الشاملة</b>
+  </div>
+
+  <!-- CH1 -->
+  <div class="chap">الفصل الأول: يعني إيه تصنيع؟ 🏭</div>
+  <div class="card">
+    <h2>What is Manufacturing?</h2>
+    <div class="star">⭐ التصنيع <span class="en term">(Manufacturing)</span> هو عملية <b>تحويل المواد الخام لمنتجات</b> <span class="hl">💛 converting raw materials into products</span>.</div>
+    <p>الإنتاج بيمثل <span class="hl">💛 20–40%</span> من قيمة كل السلع والخدمات في الدول الصناعية.</p>
+    <h3>مدخلات ومخرجات عملية التصنيع</h3>
+    <p>بيدخل: <span class="en term">Machinery</span> (ماكينات) + <span class="en term">Tooling</span> (عدد وعدة) + <span class="en term">Power</span> (طاقة) + <span class="en term">Labor</span> (عمالة)… وبيطلع: <span class="en term">Processed part</span> (قطعة جاهزة) + <span class="en term">Scrap and waste</span> (مخلفات).</p>
+    <svg class="ill" viewBox="0 0 640 140" width="640">
+      <defs><marker id="ar1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8z" fill="#052659"/></marker></defs>
+      <g font-family="Cairo" text-anchor="middle" font-weight="700">
+        <rect x="5" y="45" width="115" height="50" rx="12" fill="#C1E8FF"/><text x="62" y="66" font-size="13" fill="#052659">Material</text><text x="62" y="84" font-size="12" fill="#5483B3">مادة خام</text>
+        <line x1="124" y1="70" x2="156" y2="70" stroke="#052659" stroke-width="3" marker-end="url(#ar1)"/>
+        <rect x="160" y="35" width="175" height="70" rx="12" fill="#052659"/><text x="247" y="62" font-size="14" fill="#fff">Manufacturing</text><text x="247" y="80" font-size="13" fill="#7DA0CA">Forming + Machining</text>
+        <line x1="339" y1="70" x2="371" y2="70" stroke="#052659" stroke-width="3" marker-end="url(#ar1)"/>
+        <rect x="375" y="45" width="120" height="50" rx="12" fill="#C1E8FF"/><text x="435" y="66" font-size="13" fill="#052659">Product Parts</text><text x="435" y="84" font-size="12" fill="#5483B3">أجزاء المنتج</text>
+        <line x1="499" y1="70" x2="531" y2="70" stroke="#052659" stroke-width="3" marker-end="url(#ar1)"/>
+        <rect x="535" y="45" width="100" height="50" rx="12" fill="#5483B3"/><text x="585" y="66" font-size="13" fill="#fff">Assembly</text><text x="585" y="84" font-size="12" fill="#C1E8FF">تجميع</text>
+      </g>
+      <g font-family="Cairo" text-anchor="middle" font-size="12" fill="#5483B3">
+        <text x="320" y="130">بعدها: Inspection (اختبار) ← Final Product (المنتج النهائي) ← Storage (تخزين) ← Transportation (نقل)</text>
+      </g>
+    </svg>
+    <div class="qa">💛 خط الإنتاج كده: <b>مادة خام → تصنيع (تشكيل + تشغيل) → أجزاء المنتج → تجميع → منتج نهائي → تخزين → نقل</b>، مع <span class="en">Inspection</span> في النص على طول.</div>
+  </div>
+
+  <!-- CH2 -->
+  <div class="chap">الفصل الثاني: السباكة (الصب) 🔥</div>
+  <div class="card">
+    <h2>تعريف السباكة — Casting Definition</h2>
+    <div class="star">⭐ السباكة <span class="en term">(Casting / Foundry)</span> من <b>أقدم</b> عمليات التصنيع عند الإنسان. هي إنك <span class="hl">💛 تصب المعدن المنصهر في قالب</span> <span class="en">(mold)</span> جواه تجويف شكله وحجمه زي القطعة المطلوبة، والمعدن يتجمد وياخد الشكل، والقطعة اللي بتطلع اسمها <span class="hl">💛 casting</span>.</div>
+    <div class="qa">التعريف المختصر: <span class="en">A liquid material is poured into a mold, which contains a hollow cavity of the desired shape, and then allowed to solidify.</span></div>
+    <h3>تصنيف عمليات السباكة ⭐</h3>
+    <svg class="ill" viewBox="0 0 640 170" width="640">
+      <g font-family="Cairo" text-anchor="middle" font-weight="700">
+        <rect x="210" y="5" width="220" height="36" rx="10" fill="#052659"/><text x="320" y="30" font-size="14" fill="#fff">Casting (Foundry) Processes</text>
+        <line x1="320" y1="41" x2="320" y2="55" stroke="#052659" stroke-width="3"/>
+        <line x1="85" y1="55" x2="555" y2="55" stroke="#052659" stroke-width="3"/>
+        <line x1="85" y1="55" x2="85" y2="68" stroke="#052659" stroke-width="3"/><line x1="237" y1="55" x2="237" y2="68" stroke="#052659" stroke-width="3"/><line x1="404" y1="55" x2="404" y2="68" stroke="#052659" stroke-width="3"/><line x1="555" y1="55" x2="555" y2="68" stroke="#052659" stroke-width="3"/>
+        <rect x="15" y="68" width="140" height="34" rx="9" fill="#C1E8FF"/><text x="85" y="90" font-size="12" fill="#052659">Sand Casting</text>
+        <rect x="167" y="68" width="140" height="34" rx="9" fill="#C1E8FF"/><text x="237" y="90" font-size="12" fill="#052659">Gravity / Permanent mold</text>
+        <rect x="334" y="68" width="140" height="34" rx="9" fill="#C1E8FF"/><text x="404" y="90" font-size="12" fill="#052659">Pressure Die Casting</text>
+        <rect x="485" y="68" width="140" height="34" rx="9" fill="#C1E8FF"/><text x="555" y="90" font-size="12" fill="#052659">Centrifugal Casting</text>
+        <text x="320" y="128" font-size="12" fill="#5483B3">وكمان: Shell Mold Casting + Investment (Precision) Casting</text>
+        <text x="404" y="152" font-size="11" fill="#052659">الضغط نوعين: Hot Chamber + Cold Chamber</text>
+      </g>
+    </svg>
+    <ol class="l">
+      <li><span class="en term">Sand Casting</span> — سباكة في قوالب رملية (أشهر نوع).</li>
+      <li><span class="en term">Gravity / Permanent mold casting</span> — صب بالجاذبية في قالب دائم.</li>
+      <li><span class="en term">Pressure Die Casting</span> — صب تحت ضغط، ونوعين: <span class="en">Hot Chamber</span> و <span class="en">Cold Chamber</span>.</li>
+      <li><span class="en term">Centrifugal Casting</span> — صب بالطرد المركزي.</li>
+      <li><span class="en term">Shell Mold</span> و <span class="en term">Investment Casting</span> — قالب صدفي وقالب استثماري (دقة عالية).</li>
+    </ol>
+  </div>
+  <div class="card">
+    <h2>أجزاء القالب الرملي — Sand Mold ⭐</h2>
+    <svg class="ill" viewBox="0 0 640 240" width="640">
+      <g>
+        <rect x="150" y="20" width="340" height="200" rx="6" fill="#E8F5FF" stroke="#7DA0CA" stroke-width="3"/>
+        <line x1="150" y1="120" x2="490" y2="120" stroke="#052659" stroke-width="3" stroke-dasharray="8 5"/>
+        <text x="500" y="124" font-family="Cairo" font-size="12" fill="#052659" font-weight="700">Parting line</text>
+        <path d="M235 20 L235 78 L255 96 L255 120" fill="none" stroke="#5483B3" stroke-width="10"/>
+        <path d="M255 120 L255 158 Q255 175 275 175 L365 175 Q385 175 385 158 L385 120" fill="#5483B3" opacity=".85"/>
+        <rect x="300" y="115" width="70" height="95" rx="6" fill="#052659"/>
+        <text x="335" y="168" font-family="Cairo" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">Core</text>
+        <rect x="395" y="60" width="42" height="60" rx="4" fill="#7DA0CA"/>
+      </g>
+      <g font-family="Cairo" font-size="12" fill="#021024">
+        <text x="205" y="14" font-weight="700">Pouring cup (كوب الصب)</text>
+        <text x="60" y="90" font-weight="700">Sprue (السبوع — قناة رأسية)</text>
+        <text x="60" y="150" font-weight="700">Runner (قناة أفقية)</text>
+        <text x="60" y="205" font-weight="700">Mold cavity (تجويف القالب)</text>
+        <text x="505" y="70" font-weight="700" fill="#052659">Riser (المغذي)</text>
+        <text x="505" y="190" font-weight="700" fill="#052659">Core (لبنة — للتجاويف الداخلية)</text>
+        <text x="320" y="200" text-anchor="middle" font-weight="700" fill="#021024">Drag (نص القالب السفلي)</text>
+        <text x="320" y="42" text-anchor="middle" font-weight="700" fill="#021024">Cope (نص القالب العلوي)</text>
+      </g>
+      <rect x="140" y="10" width="360" height="220" rx="10" fill="none" stroke="#5483B3" stroke-width="4"/>
+      <text x="110" y="245" font-family="Cairo" font-size="12" fill="#5483B3" font-weight="700">Flask (صندوق القالب)</text>
+    </svg>
+    <div class="star"><ul class="l">
+      <li>⭐ <b><span class="en">Cope</span>:</b> النص العلوي من القالب، و<b><span class="en">Drag</span>:</b> النص السفلي.</li>
+      <li>⭐ <b><span class="en">Sprue</span>:</b> القناة <b>الرأسية</b> بينزل منها المعدن، و<b><span class="en">Runners</span>:</b> قنوات <b>أفقية</b>.</li>
+      <li>⭐ <b><span class="en">Riser</span>:</b> تجويف إضافي <span class="hl">💛 يخزن معدن زيادة عشان يعوّض الانكماش</span> <span class="en">(prevent shrinkage)</span>.</li>
+      <li>⭐ <b><span class="en">Core</span>:</b> شكل بيتحط جوه القالب <span class="hl">💛 عشان يعمل تجاويف داخلية</span> (زي فتحة الأنبوبة).</li>
+      <li><b><span class="en">Mold cavity</span>:</b> التجويف اللي المعدن بيتجمد فيه على شكل القطعة.</li>
+      <li><b><span class="en">Flask</span>:</b> الصندوق اللي بيحتوي القالب.</li>
+    </ul></div>
+  </div>
+  <div class="card">
+    <h2>خطوات السباكة الرملية بالترتيب ⭐</h2>
+    <div class="star"><ol class="l">
+      <li><b>إعداد وصنع النماذج والدلائل</b> — <span class="en">Pattern and Cores Making</span></li>
+      <li><b>إعداد وتشكيل القالب والدليل</b> — <span class="en">Mould and Core Preparation</span> (مع نظام الصب <span class="en">Gating system</span> و <span class="en">Risers</span>)</li>
+      <li><b>صهر المعدن ومعالجته</b> — <span class="en">Melt and Melting treatment</span></li>
+      <li><b>الصب والتجميد</b> — <span class="en">Pouring and Solidification</span></li>
+      <li><b>إخراج المسبوك وتنظيفه</b> — <span class="en">Shakeout / Fettling and Cleaning</span></li>
+      <li><b>اختبار جودة المسبوك</b> — <span class="en">Casting Inspection</span></li>
+    </ol></div>
+    <p>💛 <span class="hl">ست خطوات</span> بالترتيب ده — احفظهم كده: نماذج → قالب → صهر → صب → تنظيف → فحص.</p>
+    <h3>سماحات النموذج — Pattern Allowances ⭐</h3>
+    <div class="star"><ol class="l">
+      <li><b><span class="en">Contraction (Shrinkage) allowances</span> — تسامح الانكماش:</b> زيادة بتحطها في النموذج عشان تعوض الانكماش اللي بيحصل للمعدن وهو بيتجمد.</li>
+      <li><b><span class="en">Machining allowances</span> — تسامح التشغيل:</b> زيادة لسمك سطح المسبوك عشان يتشغل بعد كده.</li>
+      <li><b><span class="en">Technological allowances</span> — التسامحات التكنولوجية، وتشمل:</b>
+        <ul class="l">
+          <li>⭐ <b><span class="en">Drafts</span>:</b> ميل سطحي <span class="hl">💛 من 1 لـ 3 درجات</span> عشان يسهل رفع النموذج من القالب الرملي.</li>
+          <li><b><span class="en">Rounding corners</span>:</b> تدوير الأركان عشان ما يحصلش تشققات.</li>
+          <li><b><span class="en">Billing of holes</span>:</b> تقليل الفتحات والثقوب الصغيرة ويتحكم فيها بعد كده بالتشغيل.</li>
+        </ul></li>
+    </ol></div>
+    <h3>منحنى التبريد للمعدن النقي</h3>
+    <div class="qa">⭐ المعدن النقي <span class="hl">💛 بيتجمد عند درجة حرارة ثابتة = درجة الانصهار</span> <span class="en">(A pure metal solidifies at a constant temperature equal to its freezing point — same as melting point)</span>.</div>
+    <h3>الأفران — Furnaces ⭐</h3>
+    <div class="star"><ul class="l">
+      <li>⭐ <b><span class="en">Electric arc furnace</span> (فرن القوس الكهربي):</b> بيستخدم <span class="hl">💛 أساساً لسباكة الصلب (steel)</span>، إنتاجه عالي (25–50 طن/ساعة)، واستهلاك الكهرباء عالي.</li>
+      <li>⭐ <b><span class="en">Induction furnace</span> (فرن الحث):</b> المعدن <span class="hl">💛 ميلمسش عناصر التسخين</span> خالص، وعشان كده بيدي سبائك <b>عالية الجودة والنقاء</b>.</li>
+      <li>⭐ <b><span class="en">Crucible furnace</span> (فرن البوتقة):</b> مناسب للمعادن <span class="hl">💛 غير الحديدية</span> زي النحاس والبرونز والنحاس الأصفر والزنك والألومنيوم.</li>
+      <li>⭐ <b><span class="en">Cupola</span> (فرن الكوبولا):</b> أسطوانة رأسية، وبيستخدم <span class="hl">💛 بس لصهر حديد السباكة (cast irons)</span>.</li>
+    </ul></div>
+  </div>
+
+  <!-- CH3 -->
+  <div class="chap">الفصل الثالث: تشكيل المعادن والدرفلة ⚙️</div>
+  <div class="card">
+    <h2>تصنيف عمليات التشكيل — Metal Forming ⭐</h2>
+    <svg class="ill" viewBox="0 0 640 180" width="640">
+      <g font-family="Cairo" text-anchor="middle" font-weight="700">
+        <rect x="220" y="5" width="200" height="34" rx="10" fill="#052659"/><text x="320" y="29" font-size="14" fill="#fff">Metal Forming</text>
+        <line x1="320" y1="39" x2="320" y2="52" stroke="#052659" stroke-width="3"/>
+        <line x1="170" y1="52" x2="470" y2="52" stroke="#052659" stroke-width="3"/>
+        <line x1="170" y1="52" x2="170" y2="64" stroke="#052659" stroke-width="3"/><line x1="470" y1="52" x2="470" y2="64" stroke="#052659" stroke-width="3"/>
+        <rect x="70" y="64" width="200" height="34" rx="9" fill="#5483B3"/><text x="170" y="87" font-size="13" fill="#fff">Bulk Deformation</text>
+        <rect x="370" y="64" width="200" height="34" rx="9" fill="#5483B3"/><text x="470" y="87" font-size="13" fill="#fff">Sheet Metal Working</text>
+        <g font-size="12">
+          <rect x="70" y="110" width="60" height="26" rx="7" fill="#C1E8FF"/><text x="100" y="128" fill="#052659">Rolling</text>
+          <rect x="140" y="110" width="70" height="26" rx="7" fill="#C1E8FF"/><text x="175" y="128" fill="#052659">Forging</text>
+          <rect x="220" y="110" width="75" height="26" rx="7" fill="#C1E8FF"/><text x="257" y="128" fill="#052659">Extrusion</text>
+          <rect x="370" y="110" width="65" height="26" rx="7" fill="#C1E8FF"/><text x="402" y="128" fill="#052659">Bending</text>
+          <rect x="445" y="110" width="60" height="26" rx="7" fill="#C1E8FF"/><text x="475" y="128" fill="#052659">Shearing</text>
+          <rect x="515" y="110" width="60" height="26" rx="7" fill="#C1E8FF"/><text x="545" y="128" fill="#052659">Drawing</text>
+        </g>
+        <text x="170" y="162" font-size="11" fill="#5483B3">السماكة بتتغير + مساحة السطح/الحجم صغيرة</text>
+        <text x="470" y="162" font-size="11" fill="#5483B3">السماكة مش بتتغير + مساحة السطح/الحجم كبيرة</text>
+      </g>
+    </svg>
+    <div class="star">⭐ نوعين رئيسيين:
+      <ol class="l">
+        <li><b><span class="en">Bulk Deformation</span> (التشكيل الكتلي):</b> <span class="hl">💛 السماكة بتتغيّر</span> — ومنه: <span class="en">Rolling, Forging, Extrusion</span> وسحب الأسلاك والبارات <span class="en">(Wire &amp; Bar Drawing)</span>.</li>
+        <li><b><span class="en">Sheet Metal Working</span> (تشغيل الصفائح):</b> <span class="hl">💛 السماكة مش بتتغيّر</span> — ومنه: <span class="en">Bending</span> (ثني)، <span class="en">Shearing</span> (قص)، <span class="en">Deep Drawing</span> (سحب عميق)، <span class="en">Spinning</span> (دوران).</li>
+      </ol></div>
+    <h2>الدرفلة — Rolling ⭐</h2>
+    <p>الدرفلة هي عملية <span class="hl">💛 تقليل سماكة القطعة الطويلة أو تغيير مقطعها</span> بقوى ضاغطة بتعدي على مجموعة درافيل <span class="en">(rolls)</span> بتلف في اتجاهين عكس بعض. المعدن بيعدي بين درفيلين بيلفوا عكس بعض فبيضغطوه.</p>
+    <svg class="ill" viewBox="0 0 420 150" width="420">
+      <g>
+        <circle cx="150" cy="45" r="38" fill="#7DA0CA" stroke="#5483B3" stroke-width="2"/>
+        <circle cx="150" cy="105" r="38" fill="#7DA0CA" stroke="#5483B3" stroke-width="2"/>
+        <text x="150" y="50" text-anchor="middle" font-size="17">↻</text><text x="150" y="110" text-anchor="middle" font-size="17">↺</text>
+        <rect x="210" y="58" width="180" height="34" rx="4" fill="#7DA0CA"/>
+        <text x="300" y="80" text-anchor="middle" font-family="Cairo" font-size="12" fill="#021024" font-weight="700">Workpiece</text>
+        <text x="90" y="80" font-family="Outfit" font-size="13" fill="#5483B3" font-weight="700">t₀ → tғ</text>
+      </g>
+    </svg>
+    <h3>القوانين المهمة — Flat Rolling Terminology ⭐</h3>
+    <div class="exbox">
+      <div class="extitle">🧮 أولاً: الدرفة Draft — d</div>
+      <div class="step en">d = t₀ − tғ</div>
+      <div class="step">يعني: مقدار التخفيض في السماكة = السماكة الأولانية ناقص السماكة النهائية.</div>
+      <div class="step">مثال: لو <span class="en">t₀ = 10 mm</span> و <span class="en">tғ = 8 mm</span></div>
+      <div class="step en">d = 10 − 8 = 2 mm</div>
+      <span class="ans">الدرفة = 2 mm</span>
+    </div>
+    <div class="exbox">
+      <div class="extitle">🧮 ثانياً: نسبة التخفيض Reduction — r</div>
+      <div class="step en">r = d / t₀</div>
+      <div class="step">يعني: الدرفة على السماكة الابتدائية (بتطلع كسر أو نسبة مئوية).</div>
+      <div class="step">نكمل نفس المثال: <span class="en">d = 2 mm</span> ، <span class="en">t₀ = 10 mm</span></div>
+      <div class="step en">r = 2 / 10 = 0.2 = 20%</div>
+      <span class="ans">Reduction = 0.2 (20%)</span>
+    </div>
+    <h3>Hot Rolling مقابل Cold Rolling ⭐</h3>
+    <table class="tb">
+      <tr><th>الخاصية</th><th>Cold Rolling (بارد)</th><th>Hot Rolling (ساخن)</th></tr>
+      <tr><td><span class="en">Tolerance</span> (السماح)</td><td>أضيق <span class="en">(0.005")</span> ⭐</td><td>أوسع <span class="en">(0.010")</span></td></tr>
+      <tr><td>القوة والصلادة</td><td>أعلى ⭐</td><td>أقل</td></tr>
+      <tr><td>التشطيب والمعالجة</td><td>محتاج معالجة أكتر</td><td>أقل</td></tr>
+      <tr><td>السعر</td><td>أغلى ⭐</td><td>أرخص</td></tr>
+    </table>
+    <h3>أنواع مصانع الدرفلة (ترتيب الدرافيل)</h3>
+    <ol class="l">
+      <li><b><span class="en">Two-high mill</span>:</b> درفيلين — إما <span class="en">pullover</span> (القطعة بترجع لورا تاني) أو <span class="en">reversing</span> (الاتجاه بيقلب عشان القطعة تعدي كذا مرة).</li>
+      <li>⭐ <b><span class="en">Four-high mill</span>:</b> <span class="hl">💛 درافيل شغل صغيرة وبتتدعم بدرافيل ظهر أكبر</span> <span class="en">(backup rolls)</span>.</li>
+      <li><b><span class="en">Cluster mill</span>:</b> كل درفيل شغل بيتدعم بدرفيلين ظهر.</li>
+      <li><b><span class="en">Three-high mill</span>:</b> درفيلين علوي وسفلي مدفوعين ووسطاني بيلف بالاحتكاك.</li>
+      <li><b><span class="en">Tandem rolling mill</span>:</b> عدة درجات ورا بعضها في خط واحد.</li>
+    </ol>
+    <h3>تطبيقات وعيوب</h3>
+    <p>💛 <b>Ring rolling:</b> بيقلل سماكة الحلقة ويكبّر قطرها. <b>Thread rolling:</b> عملية تشكيل بتعمل خيوط (براغي) على أجزاء أسطوانية بين قالبين. <b>Shape rolling:</b> مقاطع مميزة (زوايا، كمر) بتعدي على درافيل بمجاري متدرجة.</p>
+    <div class="qa">⭐ منتجات الدرفلة: <span class="en">Bloom</span> (مقطع مربع 150مم×150مم أو أكتر) → <span class="en">Slab</span> (مستطيل، عرض 250مم أو أكتر وسماكة 40مم) → <span class="en">Billet</span> (مربع 40مم أو أقل) → صفائح وبلاطات وقضبان.</div>
+    <div class="qa">⭐ عيوب الدرفلة: <b>عيوب سطحية</b> و<b>عيوب إنشائية</b> زي <span class="en">Wavy edges, Zipper cracks, Edge cracks, Centre split, Alligatoring, Folds</span>.</div>
+  </div>
+
+  <!-- CH4 -->
+  <div class="chap">الفصل الرابع: الحدادة بالطرق (الطرق) 🔨</div>
+  <div class="card">
+    <h2>Forging — التشكيل بالطرق</h2>
+    <div class="star">⭐ الحدادة <span class="en term">(Forging)</span> هي عملية تشكيل المعدن <span class="hl">💛 بقوى ضاغطة (compression)</span> — عن طريق طرق بمطارق <span class="en">(Hammers)</span> أو مكابس <span class="en">(Presses)</span> أو مكائن طرق <span class="en">(Forging machines)</span>، بمساعدة قوالب <span class="en">(Dies)</span> والعدد <span class="en">(Tools)</span>.</div>
+    <p>القطعة بتتضغط بين قالبين عليهم شكل القطعة النهائية، فالشكل بيتحط في المنتج.</p>
+    <h3>تصنيف عمليات الحدادة ⭐</h3>
+    <svg class="ill" viewBox="0 0 640 170" width="640">
+      <g font-family="Cairo" text-anchor="middle">
+        <rect x="10" y="10" width="200" height="150" rx="12" fill="#E8F5FF" stroke="#5483B3" stroke-width="2"/>
+        <text x="110" y="32" font-weight="700" font-size="13" fill="#052659">(a) Open-die</text>
+        <rect x="35" y="95" width="150" height="16" rx="3" fill="#7DA0CA"/><rect x="75" y="60" width="70" height="35" rx="4" fill="#5483B3"/>
+        <rect x="35" y="40" width="150" height="16" rx="3" fill="#7DA0CA"/>
+        <text x="110" y="145" font-size="11" fill="#5483B3">قالب مسطح — المعدن بيجرف جانبيًا</text>
+        <rect x="220" y="10" width="200" height="150" rx="12" fill="#C1E8FF" stroke="#052659" stroke-width="2"/>
+        <text x="320" y="32" font-weight="700" font-size="13" fill="#052659">(b) Impression / Closed-die</text>
+        <path d="M245 96 h50 v-10 h50 v10 h50 v15 h-150z" fill="#7DA0CA"/>
+        <rect x="285" y="80" width="70" height="16" rx="6" fill="#5483B3"/>
+        <rect x="270" y="96" width="14" height="6" fill="#5483B3"/><rect x="356" y="96" width="14" height="6" fill="#5483B3"/>
+        <text x="320" y="145" font-size="11" fill="#5483B3">فيه Flash (زائد) بيتقص بعدين — Trimming</text>
+        <rect x="430" y="10" width="200" height="150" rx="12" fill="#E8F5FF" stroke="#5483B3" stroke-width="2"/>
+        <text x="530" y="32" font-weight="700" font-size="13" fill="#021024">(c) Flashless</text>
+        <rect x="465" y="40" width="130" height="56" rx="4" fill="#7DA0CA"/>
+        <rect x="485" y="58" width="90" height="38" rx="6" fill="#5483B3"/>
+        <text x="530" y="145" font-size="11" fill="#5483B3">مفيش Flash خالص — precision forging</text>
+      </g>
+    </svg>
+    <div class="star"><ol class="l">
+      <li>⭐ <b><span class="en">Open-die forging</span> (قالب مفتوح):</b> المعدن بيتضغط بين <span class="hl">💛 قالبين مسطحين مش بيقيدوا المعدن</span>، فالمعدن بيجرف جانبياً براحته.</li>
+      <li>⭐ <b><span class="en">Impression-die (Closed-die) forging</span>:</b> البيليت السخن بيتشكل جوه قالب بنصفين، وفيه <span class="en">Flash</span> (معدن زيادة) بيطلع وبيتقص في عملية <span class="en">Trimming</span>.</li>
+      <li>⭐ <b><span class="en">Flashless forging</span>:</b> القطعة كلها <span class="hl">💛 جوه القالب ومفيش معدن يقدر يخرج</span> — فمفيش flash نهائياً، وبتتصنف كعملية <b>حدادة دقيقة (precision)</b>.</li>
+    </ol></div>
+    <h3>عمليات الحدادة اليدوية ⭐</h3>
+    <div class="star"><ol class="l">
+      <li><b><span class="en">Drawing Down</span> (السحب):</b> بتتخفيض السماكة وتزييد الطول.</li>
+      <li>⭐ <b><span class="en">Upsetting</span> (الفلطحة):</b> <span class="hl">💛 زيادة المقطع عن طريق ضغط الطرف</span> — زي عمل رأس مسامير.</li>
+      <li><b><span class="en">Punching</span> (الثقب):</b> عمل ثقوب بالمثاقب والمساند.</li>
+      <li><b><span class="en">Bending</span> (الثني):</b> ثني المعدن بمقدمة العدة أو فوق السندان.</li>
+      <li><b><span class="en">Forge welding</span> (اللحام بالحدادة):</b> وصلتان تناكيان/مائلتان/حرف V وتسخين وطرق حتى يلتحما — من منتجاته لحام الحداد (blacksmith's welds).</li>
+    </ol></div>
+    <p>💛 أنواع المكابس <span class="en">(Presses)</span>: <span class="en">Crank, Knuckle-joint, Screw, Hydraulic</span> — واختيار المكبس عامل مهم في التشغيل.</p>
+  </div>
+
+  <!-- CH5 -->
+  <div class="chap">الفصل الخامس: البثق بالمعادن 🧴</div>
+  <div class="card">
+    <h2>Extrusion — بثق المعادن</h2>
+    <div class="star">⭐ البثق <span class="en term">(Extrusion)</span> هو إنك <span class="hl">💛 تقلل مقطع بيليت/بلوك المعدن بإجباره يعدي من فتحة قالب (die orifice) تحت ضغط عالي</span>. ودي عملية <b>تشكيل بالضغط</b> <span class="en">(compression forming)</span> — بيحصل <b>تقليل في المقطع واستطالة في نفس الوقت</b>.</div>
+    <svg class="ill" viewBox="0 0 640 140" width="640">
+      <g font-family="Cairo">
+        <rect x="10" y="30" width="140" height="70" rx="10" fill="#E8F5FF" stroke="#5483B3" stroke-width="2"/>
+        <text x="80" y="58" text-anchor="middle" font-weight="700" font-size="12" fill="#052659">Direct (Forward)</text>
+        <text x="80" y="78" text-anchor="middle" font-size="11" fill="#5483B3">نفس اتجاه الرام ➡️</text>
+        <rect x="165" y="30" width="140" height="70" rx="10" fill="#C1E8FF" stroke="#052659" stroke-width="2"/>
+        <text x="235" y="58" text-anchor="middle" font-weight="700" font-size="12" fill="#052659">Indirect (Backward)</text>
+        <text x="235" y="78" text-anchor="middle" font-size="11" fill="#5483B3">عكس اتجاه الرام ⬅️</text>
+        <rect x="320" y="30" width="140" height="70" rx="10" fill="#E8F5FF" stroke="#5483B3" stroke-width="2"/>
+        <text x="390" y="58" text-anchor="middle" font-weight="700" font-size="12" fill="#021024">Hydrostatic</text>
+        <text x="390" y="78" text-anchor="middle" font-size="11" fill="#5483B3">غرفة مليانة سائل 💧</text>
+        <rect x="475" y="30" width="155" height="70" rx="10" fill="#C1E8FF" stroke="#052659" stroke-width="2"/>
+        <text x="552" y="58" text-anchor="middle" font-weight="700" font-size="12" fill="#052659">Impact / Lateral</text>
+        <text x="552" y="78" text-anchor="middle" font-size="11" fill="#5483B3">بارد — أنبوب معجون 🦷</text>
+      </g>
+    </svg>
+    <div class="star">⭐ 4 أنواع أساسية للبثق:
+      <ol class="l">
+        <li>⭐ <b><span class="en">Direct (Forward) extrusion</span>:</b> البيليت السخن جوه الحاوية، والرام بيدفعه <span class="hl">💛 في نفس اتجاه حركة الرام</span>. في الآخر بيفضل قطعة صغيرة اسمها <span class="hl">💛 butt-end scrap</span> مش بتتبثق.</li>
+        <li>⭐ <b><span class="en">Indirect (Backward) extrusion</span>:</b> القالب مركب على طرف رام مجوف، والمعدن بيخرج <span class="hl">💛 عكس اتجاه حركة الرام</span> — ومحتاج <b>قوة أقل</b> عشان مفيش احتكاك مع جدار الحاوية.</li>
+        <li>⭐ <b><span class="en">Hydrostatic extrusion</span>:</b> البيليت أصغر من الحاوية والغرفة <span class="hl">💛 مليانة سائل والضغط بيعدي للبيليت عن طريق الرام</span> — بيقلل الاحتكاك، ومشكلة <span class="en">Sealing</span> (الإحكام) هي المشكلة الأساسية.</li>
+        <li>⭐ <b><span class="en">Impact extrusion</span>:</b> شبه الغير المباشر وبتدخل في <span class="hl">💛 البثق البارد</span> — البنش بينزل بسرعة على البلانك فبيتبثق لورا. بتعمل أطوال قصيرة من الأشكال المجوفة زي <span class="hl">💛 أنابيب معجون الأسنان والبخاخات (spray cans)</span>، وبتستخدم مواد طرية زي الألومنيوم والرصاص والنحاس والقصدير. ومن أشهر طرقها <span class="en">Hooker process</span> لأنابيب الكولابس.</li>
+      </ol></div>
+    <p>💛 <b>Hot extrusion:</b> بيتعمل في درجة حرارة عالية للمعادن اللي مفيهاش مطيلية كفاية في درجة حرارة الغرفة، أو عشان نقلل القوة المطلوبة. <b>Lateral (side) extrusion:</b> المنتج بيطلع من جنب الحاوية.</p>
+    <h3>نسبة البثق — Extrusion Ratio ⭐</h3>
+    <div class="exbox">
+      <div class="extitle">🧮 قانون نسبة البثق</div>
+      <div class="step en">rₓ = A₀ / Aғ</div>
+      <div class="step">يعني: مساحة مقطع البيليت في البداية على مساحة مقطع المنتج النهائي، وبتتسمى كمان <span class="en">reduction ratio</span>.</div>
+      <div class="step">مثال: لو <span class="en">A₀ = 100 mm²</span> و <span class="en">Aғ = 25 mm²</span></div>
+      <div class="step en">rₓ = 100 / 25 = 4</div>
+      <span class="ans">Extrusion Ratio = 4</span>
+    </div>
+    <h3>عيوب البثق — Defects in Extrusion ⭐</h3>
+    <div class="star"><ol class="l">
+      <li>⭐ <b><span class="en">Surface cracking</span>:</b> بسبب حرارة البثق العالية والسرعة والاحتكاك، والشقوق بتكون <span class="en">intergranular</span> نتيجة الهشاشة الساخنة.</li>
+      <li>⭐ <b><span class="en">Piping</span>:</b> نوع من جريان المعدن بيسحب أكاسيد وشوائب السطح <span class="hl">💛 لنص البيليت</span>. بنقللها بتعديل نمط الجريان وتشغيل سطح البيليت واستخدام <span class="en">dummy block</span>.</li>
+      <li>⭐ <b><span class="en">Internal cracking (central burst)</span>:</b> بتظهر في <span class="hl">💛 نص المنتج</span> بسبب حالة إجهاد شد هيدروستاتيكي في نص منطقة التشوه في القالب.</li>
+    </ol></div>
+    <div class="qa">💛 استخدامات البثق: بروفيلات الألومنيوم، <span class="en">cylindrical bars</span> و <span class="en">hollow tubes</span>، والمادة الأولية لسحب الأسلاك والمنتجات المفلّتة. تصميم القالب: قالب للمعادن غير الحديدية، وقابل للحديد بزاوية 120°، والقالب T-shaped بيستخدم زجاج منصهر كمزلّق.</div>
+  </div>
+</section>
+
+<!-- ===== PROBLEMS ===== -->
+<section class="screen" id="s-problems">
+  <div class="topbar">
+    <button class="btn btn-ghost btn-sm" onclick="show('s-start')">↩️ رجوع</button>
+    <b>🧮 المسائل</b>
+  </div>
+  <div id="probList"></div>
+</section>
+<div class="fixed-bar" id="reviewBar" style="display:none"><button class="btn btn-green" id="reviewBarBtn" onclick="reviewBarGo()">خلصت المراجعة؟ ادخل اقفل الامتحان 🚀</button></div>
+
+<!-- ===== QUIZ ===== -->
+<div class="modal" id="setup" onclick="if(event.target===this)closeSetup()">
+  <div class="mbox">
+    <h2>⏱️ عايز تمتحن إزاي؟</h2>
+    <div class="msub">اختار بدون وقت أو حدد مدة، ولو الوقت خلص الامتحان بيتسلّم لوحده على إجاباتك</div>
+    <div class="chips" id="chips">
+      <button class="chip full on" data-m="0" onclick="pickMode(this)">♾️ بدون وقت</button>
+      <button class="chip" data-m="3" onclick="pickMode(this)">3 دقايق</button>
+      <button class="chip" data-m="5" onclick="pickMode(this)">5 دقايق</button>
+      <button class="chip" data-m="10" onclick="pickMode(this)">10 دقايق</button>
+      <button class="chip" data-m="15" onclick="pickMode(this)">15 دقيقة</button>
+      <button class="chip" data-m="-1" style="grid-column:span 2" onclick="pickMode(this)">⚙️ مدة تانية</button>
+    </div>
+    <input type="number" id="customMin" min="3" max="15" inputmode="numeric" placeholder="اكتب عدد الدقايق (من 3 لـ 15)">
+    <button class="btn btn-main" onclick="confirmSetup()">ابدأ الامتحان 🚀</button>
+    <button class="btn btn-ghost" onclick="closeSetup()">رجوع</button>
+  </div>
+</div>
+
+<section class="screen" id="s-quiz">
+  <div class="qhead">
+    <div class="pbar"><div id="pfill"></div></div>
+    <div class="stats"><span>أجبت على <b id="cAns">0</b> / <b id="cTot">0</b></span><span id="cQ"></span><span><i id="cTimeIco" style="font-style:normal">⏱️</i> <b class="en" id="cTime">00:00</b></span></div>
+  </div>
+  <div style="margin:4px 0 12px"><button class="btn btn-ghost btn-sm" onclick="goReview()">📚 ارجع للمراجعة</button></div>
+  <div class="card" id="qcard"></div>
+  <div class="nav">
+    <button class="btn btn-ghost" id="prevB" onclick="go(-1)">➡️ السابق</button>
+    <button class="btn btn-main" id="nextB" onclick="go(1)">التالي ⬅️</button>
+  </div>
+  <div class="card" style="margin-top:14px"><b>خريطة الأسئلة</b><div class="dots" id="dots"></div></div>
+  <button class="btn btn-green" onclick="submitExam()">Submit &amp; See My Score 🏁</button>
+</section>
+
+<!-- ===== RESULT ===== -->
+<section class="screen" id="s-result">
+  <div class="card" style="text-align:center">
+    <h2 id="rName"></h2>
+    <div class="ringwrap"><svg width="200" height="200" viewBox="0 0 200 200"><circle cx="100" cy="100" r="85" fill="none" stroke="#7DA0CA" stroke-width="16"/><circle id="ring" cx="100" cy="100" r="85" fill="none" stroke="#052659" stroke-width="16" stroke-linecap="round" stroke-dasharray="534" stroke-dashoffset="534" style="transition:stroke-dashoffset 1.6s cubic-bezier(.22,1,.36,1),stroke .4s"/></svg><div class="pct"><span id="pctN">0</span>%</div></div>
+    <div class="sgrid"><div style="color:#052659"><b id="rOk">0</b>صح ✅</div><div style="color:#d9593b"><b id="rBad">0</b>غلط ❌</div><div><b id="rTot">0</b>الإجمالي</div></div>
+    <div class="msg" id="rMsg"></div>
+    <div class="en" style="color:var(--mut);font-size:.95rem" id="rTime"></div><div id="rTimeout" style="display:none;font-weight:700;color:var(--red);margin-top:4px"></div>
+  </div>
+  <div class="card certbox">
+    <h2>🎓 شهادتك</h2>
+    <p style="color:var(--mut);font-weight:600;margin-bottom:8px">الشهادة بتتحدد تلقائي حسب درجتك 🎯</p>
+    <canvas id="cert" width="1000" height="700"></canvas>
+    <button class="btn btn-main" onclick="dlCert()">⬇️ حمّل الشهادة PNG</button>
+  </div>
+  <div class="ask">💬 لو محتاج تسأل أو تستفسر عن أي حاجة ابعتلي<br><a id="waBtn2" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.1 14.3c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .2-3.2-.7-2.7-1.1-4.4-3.8-4.5-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.8-1c.2-.2.4-.2.6-.1l1.9.9c.2.1.4.2.5.3.1.2.1.8-.1 1.4z"/></svg><span class="en">WhatsApp</span></a></div>
+  <h2 style="margin:22px 0 10px">📝 المراجعة الكاملة</h2>
+  <div id="rev"></div>
+  <button class="btn btn-main" onclick="startExam()">🔄 اعمل الامتحان تاني</button>
+  <button class="btn btn-ghost" onclick="show('s-start')">🏠 الشاشة الرئيسية</button>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" onerror="void 0"></script>
+<script>
+/* ===== عدّل بيانات التواصل من هنا ===== */
+const WA_NUMBER = '201091139568';   // رقم الواتساب بالصيغة الدولية بدون + مثال: 201001234567
+const TG_USER   = 'HRBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB';  // يوزر التليجرام بدون @
+/* ===================================== */
+const SUBJECT = 'تكنولوجيا تصنيع المواد';
+const $ = id => document.getElementById(id);
+
+/* ===== الأسئلة (مستوى متوسط - كلها من المحاضرات) =====
+   t:'th' نظري | t:'ca' حسابي — e: شرح بالعامية + القانون الإنجليزي */
+const Q = [
+{t:'th',q:'What is manufacturing?',a:'Converting raw materials into products',w:['Melting metals only','Transporting products','Storing raw materials'],h:'تلميح: خامات بتدخل ومنتج بيطلع 🏭',e:'التصنيع هو تحويل المواد الخام لمنتجات — Manufacturing = converting raw materials into products.'},
+{t:'th',q:'Manufacturing is about what % of the economy?',a:'20–40%',w:['5–10%','60–80%','90–100%'],h:'تلميح: أكتر من الخُمس وأقل من نص الاقتصاد',e:'النسبة المذكورة في المحاضرة 20–40% من قيمة كل السلع والخدمات.'},
+{t:'th',q:'In the manufacturing process, the main inputs are:',a:'Machinery, Tooling, Power and Labor',w:['Sand, Water, Salt and Air','Rolls, Dies, Billets only','Money, Banks and Stores'],h:'تلميح: فكّر في اللي بيشغّل المصنع: ماكينات وعمالة',e:'مدخلات التصنيع: Machinery + Tooling + Power + Labor.'},
+{t:'th',q:'Which of these is a metal forming process?',a:'Rolling',w:['Casting','Welding','Painting'],h:'تلميح: عملية بتغيّر شكل المعدن بالضغط من غير ما تصهره',e:'التشكيل (Forming) منه الدرفلة Rolling، أما الصب Casting فهي عملية منفصلة.'},
+{t:'th',q:'Bulk deformation includes:',a:'Rolling, Forging and Extrusion',w:['Bending, Shearing and Spinning','Casting, Welding and Cutting','Painting, Coating and Drying'],h:'تلميح: التشكيل الكتلي السماكة فيه بتتغيّر: درفلة وحدادة وبثق',e:'التشكيل الكتلي Bulk: Rolling, Forging, Extrusion + Wire & Bar Drawing.'},
+{t:'th',q:'Which process belongs to sheet metal working?',a:'Bending',w:['Forging','Extrusion','Rolling'],h:'تلميح: الصفائح بتتثني وتتقص والسماكة مش بتتغيّر',e:'Sheet metal: السماكة مش بتتغير — Bending, Shearing, Deep Drawing, Spinning.'},
+{t:'th',q:'What is casting?',a:'Pouring molten metal into a mold',w:['Hammering hot metal with dies','Forcing metal through a die','Rolling metal between two rolls'],h:'تلميح: الصب = معدن سايح بيتحط في قالب 🔥',e:'Casting = صب معدن منصهر في قالب وتخليه يتجمد — one of the oldest processes.'},
+{t:'th',q:'The part made by casting is called:',a:'A casting',w:['A billet','A bloom','An extrusion'],h:'تلميح: المنتج اسمه شبه اسم العملية نفسها',e:'المنتج بتاع السباكة اسمه casting.'},
+{t:'th',q:'In a sand mold, the top half is called:',a:'Cope',w:['Drag','Core','Riser'],h:'تلميح: Cope = العلوي (زي الغطا)',e:'النص العلوي Cope والنص السفلي Drag.'},
+{t:'th',q:'The bottom half of a sand mold is called:',a:'Drag',w:['Cope','Sprue','Runner'],h:'تلميح: Drag = السفلي (بيتسحب ع الأرض)',e:'Drag = النص السفلي من القالب.'},
+{t:'th',q:'What is the function of the riser?',a:'To prevent shrinkage',w:['To make internal cavities','To receive the poured metal','To hold the sand mold'],h:'تلميح: بيخزّن معدن زيادة عشان المعدن بينكمش وهو بيبرد',e:'Riser = تجويف إضافي يخزن معدن يعوض الانكماش prevent shrinkage.'},
+{t:'th',q:'What is the function of the core?',a:'To make internal cavities',w:['To prevent shrinkage','To pour the metal','To cool the metal'],h:'تلميح: لما القطعة تحتاج فتحة جواها زي الأنبوبة',e:'Core = شكل جوه القالب يعمل تجاويف داخلية internal cavities.'},
+{t:'th',q:'The sprue is:',a:'The vertical channel',w:['The horizontal channel','The box of the mold','The top half of the mold'],h:'تلميح: القناة اللي المعدن بينزل منها من فوق لتحت',e:'Sprue = القناة الرأسية، أما Runners فهي القنوات الأفقية.'},
+{t:'th',q:'Sand casting has how many steps?',a:'6 steps',w:['3 steps','5 steps','10 steps'],h:'تلميح: نماذج ← قالب ← صهر ← صب ← تنظيف ← فحص.. عدّهم',e:'6 خطوات: نماذج → قالب → صهر → صب وتجميد → تنظيف → فحص.'},
+{t:'th',q:'Which is NOT a pattern allowance?',a:'Turning allowance',w:['Shrinkage allowance','Machining allowance','Draft allowance'],h:'تلميح: السماحات: انكماش وتشغيل وتكنولوجية.. دوّر على الغريب',e:'السماحات الثلاثة: Contraction + Machining + Technological (drafts, rounding, billing).'},
+{t:'th',q:'The draft angle is usually:',a:'1 to 3 degrees',w:['10 to 15 degrees','30 to 45 degrees','90 degrees'],h:'تلميح: ميل بسيط جدًا عشان النموذج يطلع من الرمل بسهولة',e:'Drafts = ميل 1 لـ 3 درجات يسهل رفع النموذج من الرمل.'},
+{t:'th',q:'A pure metal solidifies at:',a:'A constant temperature',w:['An increasing temperature','A random temperature','A decreasing temperature'],h:'تلميح: المعدن النقي ليه درجة انصهار واحدة محددة',e:'المعدن النقي يتجمد عند درجة ثابتة = freezing point = melting point.'},
+{t:'th',q:'Which furnace is used primarily for casting steel?',a:'Electric arc furnace',w:['Crucible furnace','Cupola','Open mold furnace'],h:'تلميح: فرن بيشتغل بالقوس الكهربي وإنتاجه كبير ⚡',e:'Electric arc furnace يستخدم أساساً لسباكة الصلب steel، وإنتاجه 25–50 طن/ساعة.'},
+{t:'th',q:'The metal never touches the heating elements in:',a:'Induction furnace',w:['Crucible furnace','Cupola','Electric arc furnace'],h:'تلميح: بيسخّن بالحث الكهرومغناطيسي من غير تلامس',e:'Induction: المعدن ميلمسش عناصر التسخين — high quality and purity.'},
+{t:'th',q:'Cupolas are used only for melting:',a:'Cast irons',w:['Steel','Aluminum alloys','Copper alloys'],h:'تلميح: فرن رأسي بيصهر الحديد الزهر بس',e:'Cupola = فرن رأسي يستخدم فقط لصهر حديد السباكة cast irons.'},
+{t:'th',q:'Crucible furnaces are used for:',a:'Nonferrous metals like brass and bronze',w:['Only cast iron','Only steel','Only glass'],h:'تلميح: البوتقة بتتحط فيها معادن زي النحاس والألومنيوم',e:'Crucible مناسب للمعادن غير الحديدية: bronze, brass, zinc, aluminum.'},
+{t:'th',q:'What is rolling?',a:'Reducing thickness using rolls',w:['Pouring metal into a mold','Pushing metal through a die','Hammering metal between dies'],h:'تلميح: الدرافيل بتلف عكس بعض وبتضغط المعدن بينها',e:'Rolling = تقليل السماكة أو تغيير المقطع بقوى ضاغطة عبر درافيل تلف عكس بعض.'},
+{t:'th',q:'Cold rolling gives:',a:'Higher strength',w:['Lower strength','Lower price','Wider tolerance'],h:'تلميح: البارد أقوى وأغلى من الساخن',e:'Cold rolling: tighter tolerance (0.005") + high strength & hardness لكن أغلى.'},
+{t:'th',q:'In a four-high mill, the small rolls are:',a:'Supported by backup rolls',w:['Turned by friction only','Removed after each pass','Made of sand'],h:'تلميح: الدرافيل الصغيرة محتاجة حد يسندها من ورا',e:'Four-high: درافيل شغل صغيرة مدعومة بدرافيل ظهر backup rolls أكبر.'},
+{t:'th',q:'Ring rolling is used to:',a:'Increase the ring diameter',w:['Make threads on bolts','Produce collapsible tubes','Melt cast iron'],h:'تلميح: الحلقة بتتفلطح وقطرها بيكبر ⭕',e:'Ring rolling يقلل سماكة الحلقة ويكبر قطرها.'},
+{t:'th',q:'Which of the following is a structural rolling defect?',a:'Alligatoring',w:['Piping','Central burst','Billing'],h:'تلميح: اسمه جاي من حيوان بيفتح بُقه 🐊',e:'Structural defects: wavy edges, zipper cracks, edge cracks, centre split, alligatoring, folds.'},
+{t:'th',q:'What is forging?',a:'Shaping metal by compression using hammers or presses',w:['Pouring molten metal into a mold','Drawing metal through a die','Cutting sheet metal with shears'],h:'تلميح: طرق بمطرقة أو مكبس وقوالب 🔨',e:'Forging = تشكيل بالقوى الضاغطة compression بمطارق أو مكابس وقوالب.'},
+{t:'th',q:'In open-die forging, the metal:',a:'Flows sideways freely',w:['Cannot flow at all','Flows only through a hole','Is melted inside the die'],h:'تلميح: القالب مسطح ومش بيحبس المعدن',e:'Open-die: قالبين مسطحين ميقيدوش المعدن فبيجرف جانبياً without constraint.'},
+{t:'th',q:'In flashless forging:',a:'No flash is produced',w:['A large flash is produced','The metal is melted first','The dies are always flat'],h:'تلميح: Flashless يعني من غير Flash',e:'Flashless: القطعة كلها جوه القالب — no flash، وبتتصنف precision forging.'},
+{t:'th',q:'Which of these is a forging operation?',a:'Upsetting',w:['Spinning','Shearing','Extrusion'],h:'تلميح: عمليات الحدادة: سحب وفلطحة وثقب وثني ولحام',e:'عمليات الحدادة: Drawing down, Upsetting, Punching, Bending, Forge welding.'},
+{t:'th',q:'Upsetting means:',a:'Making a bar thicker by pressing its end',w:['Reducing thickness by rolling','Making holes with a punch','Pouring metal into a mold'],h:'تلميح: زي عمل راس المسمار',e:'Upsetting (الفلطحة) = زيادة المقطع بضغط الطرف — زي رأس المسامير.'},
+{t:'th',q:'What is extrusion?',a:'Forcing a billet through a die opening',w:['Melting metal in a furnace','Joining metals by hammering','Bending sheets around a die'],h:'تلميح: زي عصر معجون الأسنان من الفتحة 🦷',e:'Extrusion = بيليت بيعدي من فتحة قالب تحت ضغط عالي — compression forming.'},
+{t:'th',q:'In direct extrusion, the metal flows:',a:'Same direction as the ram',w:['Opposite to the ram','Upward','In a circular motion'],h:'تلميح: Direct = مع حركة الرام',e:'Direct: المعدن بيتحرك في نفس اتجاه الرام — مع butt-end scrap في الآخر.'},
+{t:'th',q:'In indirect extrusion, the metal flows:',a:'Opposite to the ram',w:['Same direction as the ram','Upward','Only sideways'],h:'تلميح: Indirect = عكس حركة الرام',e:'Indirect: القالب على رام مجوف والمعدن بيخرج عكس حركة الرام — force أقل.'},
+{t:'th',q:'The piece left at the end of direct extrusion is:',a:'Butt-end scrap',w:['Flash','Riser','Runner'],h:'تلميح: الباقي اللي ما اتبثقش في الآخر',e:'Butt-end scrap = الباقي في الحاوية ومش بيتبثق في Direct extrusion.'},
+{t:'th',q:'Which extrusion uses a chamber filled with fluid?',a:'Hydrostatic extrusion',w:['Direct extrusion','Impact extrusion','Open-die forging'],h:'تلميح: Hydro = مية / سائل 💧',e:'Hydrostatic: الغرفة مليانة سائل والضغط بيعدي للبيليت عن طريق الرام.'},
+{t:'th',q:'Impact extrusion makes:',a:'Toothpaste tubes and spray cans',w:['Railway rails','Ship propellers','Concrete blocks'],h:'تلميح: بيتعمل بارد وبيطلع حاجات مجوفة صغيرة',e:'Impact (cold) extrusion تعمل hollow shapes قصيرة زي أنابيب المعجون والبخاخات.'},
+{t:'th',q:'Which of the following is a defect in extrusion?',a:'Surface cracking',w:['Alligatoring','Zipper cracks','Wavy edges'],h:'تلميح: لاحظ إن 3 اختيارات من عيوب الدرفلة',e:'عيوب البثق: surface cracking, piping, internal (central burst) cracking — الباقي عيوب درفلة.'},
+{t:'th',q:'Hot extrusion is mainly used to:',a:'Reduce the force required',w:['Increase friction','Make the metal harder','Avoid using a die'],h:'تلميح: الحرارة بتخلّي المعدن ألين فالقوة المطلوبة بتقل',e:'Hot extrusion للمعادن قليلة المطيلية في حرارة الغرفة أو لتقليل القوة المطلوبة.'},
+{t:'th',q:'In lateral extrusion, the product comes out:',a:'From the side of the container',w:['From the top of the ram','From inside the furnace','From the backup rolls'],h:'تلميح: Lateral = جانبي',e:'Lateral = side extrusion: المنتج بيطلع من جنب الحاوية.'},
+{t:'th',q:'Extrusion is used to produce:',a:'Bars and hollow tubes',w:['Cast iron engine blocks','Sand molds','Rivet heads only'],h:'تلميح: بروفيلات وأسياخ وأنابيب',e:'Applications: cylindrical bars, hollow tubes, and starting stock for drawn rod.'}
+];
+
+/* ===== أدوات ===== */
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  const el=$(id);el.classList.add('active');window.scrollTo(0,0);
+  $('reviewBar').style.display=(id==='s-review')?'block':'none';
+  if(window.gsap&&id==='s-review')gsap.from('#s-review .card,#s-review .chap',{y:24,opacity:0,duration:.5,stagger:.03,clearProps:'all'});
+}
+function fmt(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+const L=['A','B','C','D'];
+
+/* خلفية الفقاعات + روابط التواصل */
+(function(){
+  const em=['🏭','⚙️','🔩','🛠️','🔧','⚒️','🧲','📐','🪛','🏗️','🚜','⚙️'];
+  em.forEach((e,i)=>{
+    const t=document.createElement('b');t.textContent=e;
+    const col=i%4,row=Math.floor(i/4);
+    t.style.cssText=`font-size:${30+Math.random()*34}px;left:${col*25+Math.random()*14+2}%;top:${row*33+Math.random()*18+3}%;animation-delay:${-Math.random()*16}s;animation-duration:${13+Math.random()*9}s`;
+    $('bubbles').appendChild(t);
+  });
+  const wa='https://wa.me/'+WA_NUMBER, tg='https://t.me/'+TG_USER;
+  $('waBtn').href=wa;$('tgBtn').href=tg;$('waBtn2').href=wa;
+})();
+
+/* ===== المراجعة ===== */
+let examActive=false;
+function goReview(){
+  $('reviewBarBtn').textContent=examActive?'▶️ كمّل الامتحان':'خلصت المراجعة؟ ادخل اقفل الامتحان 🚀';
+  show('s-review');
+}
+function backFromReview(){show(examActive?'s-quiz':'s-start')}
+function reviewBarGo(){if(examActive)show('s-quiz');else startExam()}
+
+/* ===== المسائل =====
+   كل مسألة: {q:'نص المسألة', steps:['خطوة 1','خطوة 2'], ans:'الإجابة النهائية'} */
+const E=s=>'<b class="en">'+s+'</b>';
+const S=(a,c)=>'stroke="#052659" stroke-width="2" fill="'+(c||'#C1E8FF')+'" '+(a||'');
+const TB='<table class="tb"><tr><th>الخامة</th><th>الوزن</th><th>C%</th><th>Si%</th><th>Mn%</th><th>S%</th></tr><tr><td>Pig Iron 1</td><td>0.2</td><td>3.2</td><td>1.7</td><td>0.8</td><td>0.03</td></tr><tr><td>Pig Iron 2</td><td>0.25</td><td>3.5</td><td>2.4</td><td>0.6</td><td>0.01</td></tr><tr><td>Scrap</td><td>0.55</td><td>3.25</td><td>2.3</td><td>0.65</td><td>0.08</td></tr></table>';
+const F_CYL='<svg class="ill" viewBox="0 0 200 130" width="200"><path d="M40 35v60a60 18 0 0 0 120 0V35" '+S()+'/><ellipse cx="100" cy="35" rx="60" ry="18" '+S()+'/><path d="M40 8h120M172 35v60" stroke="#5483B3" stroke-width="2"/><text x="96" y="22" font-size="15" fill="#052659" class="en">D</text><text x="178" y="70" font-size="15" fill="#052659" class="en">H</text></svg>';
+const F_3='<svg class="ill" viewBox="0 0 420 120" width="420"><g '+S()+'><rect x="10" y="35" width="50" height="50"/><path d="M10 35l15-15h50l-15 15zM60 35l15-15v50l-15 15z" fill="#7DA0CA"/><rect x="110" y="50" width="120" height="25"/><path d="M110 50l12-10h120l-12 10zM230 50l12-10v25l-12 10z" fill="#7DA0CA"/><rect x="270" y="70" width="110" height="12"/><path d="M270 70l30-20h110l-30 20zM380 70l30-20v12l-30 20z" fill="#7DA0CA"/></g><g font-size="13" fill="#052659" text-anchor="middle"><text x="42" y="108">مكعب (a)</text><text x="175" y="108">بار (a×a×l)</text><text x="335" y="108">بلاطة (l×w×t)</text></g></svg>';
+const F_RISER='<svg class="ill" viewBox="0 0 260 130" width="260"><g '+S()+'><rect x="40" y="85" width="150" height="14"/><path d="M40 85l40-30h150l-40 30zM190 85l40-30v14l-40 30z" fill="#7DA0CA"/><rect x="85" y="35" width="32" height="32"/><ellipse cx="101" cy="35" rx="16" ry="6"/></g><g font-size="13" fill="#052659"><text x="62" y="22">رايزر</text><text x="90" y="122">بلاطة 100×50×10</text></g></svg>';
+const F_713='<svg class="ill" viewBox="0 0 300 195" width="300"><defs><pattern id="hx" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v6" stroke="#5483B3" stroke-width="2"/></pattern></defs><rect x="20" y="15" width="240" height="160" fill="url(#hx)" stroke="#052659" stroke-width="2"/><rect x="20" y="35" width="96" height="120" fill="#fff" stroke="#052659" stroke-width="2"/><rect x="116" y="55" width="64" height="80" fill="#fff" stroke="#052659" stroke-width="2"/><path d="M10 95h260" stroke="#052659" stroke-dasharray="8 3 2 3"/><g font-size="13" fill="#052659" text-anchor="middle" class="en"><text x="140" y="10">30</text><text x="68" y="99">ø15</text><text x="148" y="99">ø10</text><text x="283" y="99">ø20</text><text x="68" y="190">12</text><text x="148" y="190">8</text></g></svg>';
+const F_MOULD='<svg class="ill" viewBox="0 0 320 250" width="320"><rect x="10" y="10" width="300" height="230" fill="#E8F5FF" stroke="#052659" stroke-width="2"/><path d="M10 125h300" stroke="#E17055" stroke-width="2" stroke-dasharray="7 4"/><rect x="110" y="85" width="120" height="80" fill="#7DA0CA" stroke="#052659" stroke-width="2"/><rect x="172" y="27" width="58" height="58" fill="#7DA0CA" stroke="#052659" stroke-width="2"/><path d="M85 95h73v60H85zM158 105h32v40h-32z" fill="#021024" fill-opacity=".8"/><g font-size="12" fill="#052659"><text x="18" y="30">Cope (العلوي)</text><text x="18" y="236">Drag (السفلي)</text><text x="18" y="119" fill="#E17055">خط الفصل</text><text x="236" y="60">رايزر ø14.4</text><text x="236" y="130">القطعة</text><text x="40" y="82">كور + مسند</text></g></svg>';
+const PROBLEMS=[
+{t:'📌 القوانين الأساسية (احفظها الأول)',open:1,q:'كل مسائل التجمّد والرايزر ماشية على القوانين دي.',steps:[
+'§ts = K · (Vol / Sa)²',
+'يعني زمن التجمّد = ثابت القالب K × (الحجم ÷ مساحة السطح) تربيع. K بيتغيّر حسب القالب (رمل ولا معدن). كل ما الحجم يزيد أو السطح يقل، القطعة بتتأخر في التجمّد.',
+'§M = Vol / Sa',
+'الـ Modulus هو النسبة بين الحجم ومساحة السطح. وكده ts بتتناسب مع M تربيع.',
+'§Mr = 1.2 · Mc',
+'الرايزر لازم يتجمّد بعد القطعة عشان يفضل يغذّيها بمعدن سايل وماتطلعش فيها عيوب انكماش، فبناخد معامله 1.2 من معامل القطعة.',
+'§Dr = Hr = 6 · Mr',
+'لو الرايزر أسطوانة وقطرها = ارتفاعها، يبقى M = D/6 (هتشوفه مثبت في المسألة 3)، ومنها D = 6M.'],ans:'احفظ: ts = K(Vol/Sa)² ، M = Vol/Sa ، Mr = 1.2Mc ، Dr = 6Mr'},
+{t:'🧮 مسألة 1: توازن الشحنة (Charge Balance)',q:'شحنة الكوبولا: 20% Pig Iron(1) و25% Pig Iron(2) و55% Scrap، وبدون فواقد أو إضافات. هات التركيب الكيميائي المتوقع للمعدن المنصهر.'+TB,steps:[
+'الفكرة: النسبة النهائية لأي عنصر هي متوسط مرجّح بالأوزان. بنضرب وزن كل خامة في نسبة العنصر فيها، نجمع، ونقسم على مجموع الأوزان.',
+'§%X = [W1·X1/100 + W2·X2/100 + W3·X3/100] / (W1+W2+W3) × 100',
+'مجموع الأوزان = 0.2+0.25+0.55 = 1، والـ ÷100 بتلغي ×100، فالمسألة بقت جمع (وزن × نسبة) بس.',
+'الكربون: '+E('0.2×3.2 + 0.25×3.5 + 0.55×3.25 = 0.64 + 0.875 + 1.7875 = 3.3025 %'),
+'السيليكون: '+E('0.2×1.7 + 0.25×2.4 + 0.55×2.3 = 0.34 + 0.6 + 1.265 = 2.205 %'),
+'المنجنيز: '+E('0.2×0.8 + 0.25×0.6 + 0.55×0.65 = 0.16 + 0.15 + 0.3575 = 0.6675 %'),
+'الكبريت: '+E('0.2×0.03 + 0.25×0.01 + 0.55×0.08 = 0.006 + 0.0025 + 0.044 = 0.0525 %')],ans:'C = 3.3025% ، Si = 2.205% ، Mn = 0.6675% ، S = 0.0525%'},
+{t:'🔥 مسألة 2: فرن الكوبولا (إنتاج، كوك، هواء)',q:'فرن كوبولا قطره الداخلي 1.25 م ونسبة الصهر 8:1، ومعدل الصهر 0.5 كجم/ساعة/سم². احسب معدل الإنتاج وكمية الكوك وكمية الهواء المطلوبة (احتراق كامل، والكوك 88% كربون).',steps:[
+'<b>(أ) معدل الإنتاج:</b> بنضرب معدل الصهر في مساحة مقطع الفرن بالسم². القطر 1.25 م = 125 سم.',
+'§Production = 0.5 × (π/4) × 125² = 6132.8 kg/hr',
+'(لو حسبتها بالآلة هتطلع 6135.9، الفرق تقريب بس. اكتب اللي في شيت الدكتور.)',
+'<b>(ب) الكوك:</b> نسبة 8:1 يعني كل 8 كجم معدن بيدخل معاهم 1 كجم كوك، فنقسم على 8.',
+'§W_coke = 6132.8 / 8 = 766.6 kg/hr',
+'<b>(ج) الهواء:</b> معادلة الاحتراق: '+E('C + O₂ → CO₂')+' والأوزان '+E('12 + 32 → 44')+'. يعني 1 كجم كربون بياخد 32/12 كجم أكسجين.',
+'الهواء فيه 23% أكسجين بالوزن، فنقسم على 0.23: '+E('(32/12) × (100/23) ≈ 11.6 kg air / kg C'),
+'الكوك 88% كربون بس: '+E('0.88 × 11.6 = 10.208 kg air / kg coke'),
+'§W_air = 10.208 × 766.6 = 7825.5 kg/hr',
+'<b>غازات العادم:</b> '+E('766.6 + 7825.5 = 8592.1 kg/hr')+' (تلوث عالي).',
+'<b>تحويل لـ m³/hr (إضافة مني):</b> السؤال طالب m³ والشيت سايبها كجم. لو كثافة الهواء تقريبًا 1.2 كجم/م³ يبقى '+E('7825.5 / 1.2 ≈ 6521 m³/hr')+'. اسأل الدكتور لو عايز الكثافة اللي يعتمدها.'],ans:'الإنتاج ≈ 6132.8 kg/hr ، الكوك = 766.6 kg/hr ، الهواء = 7825.5 kg/hr'},
+{t:'⭕ مسألة 3: Modulus الأسطوانة',q:'احسب modulus الأسطوانة في الحالتين: (أ) القطر = الارتفاع (D=H). (ب) القطر = نص الارتفاع (D = ½H).'+F_CYL,steps:[
+'القاعدة: M = الحجم ÷ مساحة السطح. حجم الأسطوانة '+E('π/4·D²·H')+' ومساحتها '+E('2·(π/4)D² + πDH')+' (قاعدتين + الجدار الجانبي).',
+'<b>(أ) D = H:</b>',
+'§Vol = π/4·D²·D = (π/4)D³',
+'§Sa = 2(π/4)D² + πD·D = (π/2 + π)D² = (3/2)πD²',
+'§M = (π/4)D³ / (3/2)πD² = D/6',
+'وده السبب إن في الرايزر بنقول Dr = 6Mr.',
+'<b>(ب) D = ½H يعني H = 2D:</b>',
+'§Vol = π/4·D²·2D = (π/2)D³',
+'§Sa = 2(π/4)D² + πD·2D = (π/2)D² + 2πD² = (5/2)πD²',
+'§M = (π/2)D³ / (5/2)πD² = D/5'],ans:'(أ) M = D/6 ، (ب) M = D/5 (الأبعاد بالسم)'},
+{t:'📦 مسألة 4: Modulus المكعب والبلاطة والبار',q:'احسب الـ modulus للأشكال دي: (أ) مكعب (ب) بلاطة (ج) بار.'+F_3,steps:[
+'<b>(أ) المكعب (ضلعه a):</b> المكعب ليه 6 أوجه كل وجه a².',
+'§Vol = a³ ، Sa = 6a² ⇒ M = a/6',
+'<b>(ب) البلاطة (الأبعاد l و w و t حيث l > w > t):</b> مساحة السطح = الوجهين الكبار + الأربع جوانب.',
+'§Vol = l·w·t ، Sa = 2lw + 2(l+w)t',
+'§M = lwt / [2lw + 2(l+w)t]',
+'<b>(ج) البار (المقطع مربع، يعني w = t = a):</b> مساحته = طرفين a² + أربع جوانب a·l.',
+'§Vol = a²l ، Sa = 2a² + 4al',
+'§M = a²l / (2a² + 4al) = a·l / [2(a + 2l)]',
+'(الشيت كاتب المقام في آخر خطوة بشكل فيه غلطة طباعة، والصح هو اللي فوق بعد ما نقسم على a.)'],ans:'مكعب: a/6 ، بلاطة: lwt/[2lw+2(l+w)t] ، بار: a·l/[2(a+2l)]'},
+{t:'⏱️ مسألة 5: زمن تجمّد المكعب والأسطوانة',q:'زمن تجمّد مكعب ضلعه 10 سم هو 6 دقايق. احسب زمن تجمّد مكعب تاني ضلعه 15 سم، وأسطوانة ليها نفس حجم المكعب الأول وفيها H = D، ونفس ظروف القالب.',steps:[
+'<b>الخطوة 1: نجيب K من المكعب الأول</b> (لأن القالب واحد فـ K ثابتة).',
+'§Vol = 10³ = 1000 cm³ ، Sa = 6×10² = 600 cm²',
+'§6 = K (1000/600)² = K (10/6)² ⇒ K = 2.16',
+'<b>الخطوة 2: المكعب 15 سم:</b>',
+'§Vol = 3375 cm³ ، Sa = 6×15² = 1350 cm²',
+'§ts = 2.16 (3375/1350)² = 2.16 × 6.25 = 13.5 min',
+'<b>الخطوة 3: الأسطوانة (نفس الحجم 1000 سم³ و H = D):</b> الأول نجيب القطر من الحجم.',
+'§(π/4)D³ = 1000 ⇒ D = ∛(1000/(π/4)) = 10.84 cm',
+'§Sa = 2(π/4)D² + πD·D = (3/2)πD² = (3/2)π(10.84)² = 553.5 cm²',
+'§ts = 2.16 (1000/553.5)² = 7.05 min',
+'لاحظ: المكعب اللي ليه نفس الحجم تجمّد في 6 دقايق، والأسطوانة 7.05، يعني الشكل بيفرق في سرعة التجمّد (الأسطوانة سطحها أقل نسبةً لحجمها فبتبرد أبطأ).'],ans:'K = 2.16 ، المكعب 15 سم: 13.5 min ، الأسطوانة: 7.05 min'},
+{t:'🧱 مسألة 6 (مثال 7.6): تصميم رايزر لبلاطة',q:'صمّم الرايزر (Dr = Hr) اللازم لصب بلاطة أبعادها 100 × 50 × 10 سم.'+F_RISER,steps:[
+'<b>1) حجم البلاطة:</b>',
+'§Vol = 100×50×10 = 50000 cm³',
+'<b>2) مساحة السطح:</b> وجهين كبار + أربع جوانب.',
+'§Sa = 2(50)(100) + 2(100+50)(10) = 10000 + 3000 = 13000 cm²',
+'<b>3) modulus القطعة:</b>',
+'§Mc = 50000 / 13000 = 3.85 cm',
+'<b>4) modulus الرايزر:</b> بقاعدة 1.2.',
+'§Mr = 1.2 × 3.85 = 4.6 cm',
+'<b>5) أبعاد الرايزر:</b> بما إن Dr = Hr فـ Dr = 6Mr.',
+'§Dr = Hr = 6 × 4.6 = 27.6 cm',
+'(لو كملت بالأرقام من غير تقريب هتطلع 27.7 تقريبًا. الاتنين مقبولين، وحل الشيت 27.6.)'],ans:'Dr = Hr ≈ 27.6 cm'},
+{t:'🏺 مسألة 7 (مثال 7.7): زمن التجمّد + الرايزر + رسمة القالب',q:'زمن تجمّد أسطوانة قطرها 10 سم وطولها 18 سم هو 2.582 دقيقة. المطلوب: (أ) زمن تجمّد القطعة في الشكل 7.13. (ب) تصميم رايزر لها (Dr = Hr). (ج) رسم قالب رملي يوضح الرايزر ومكانه والـ cope والـ drag وخط الفصل والكور.<br>الشكل 7.13 (كل الأبعاد بالسم):'+F_713,steps:[
+'<b>(أ) أولًا نجيب K من الأسطوانة المعروفة:</b>',
+'§Vol = (π/4)(10)²(18) = 1413.7 cm³',
+'§Sa = 2(π/4)(10)² + π(10)(18) = 722.55 cm²',
+'§2.582 = K (1413.7/722.55)² ⇒ K = 0.674',
+'<b>ثانيًا حجم القطعة المطلوبة:</b> أسطوانة كاملة قطر 20 وطول 30 ناقص التجويفين.',
+'§Vol = (π/4)(20)²(30) − (π/4)(10)²(8) − (π/4)(15)²(12) = 6675.88 cm³',
+'<b>مساحة السطح:</b> بنجمع كل الأسطح اللي المعدن ملامس فيها القالب أو الكور: الوجهين الدايرين، وجدار التجويف 15 وجدار التجويف 10 والجدار الخارجي.',
+'§Sa = (π/4)(20)²(2) + π(15)(12) + π(10)(8) + π(20)(30) = 3330.1 cm²',
+'(مساحة الحلقة الوسطى بين 15 و10 مع قاع التجويف بيعدّلوا بعض مع فتحة الوش، عشان كده الحساب ده صح.)',
+'§Mc = 6675.88 / 3330.1 = 2.0 cm',
+'§ts = 0.674 × (2)² = 2.7 min',
+'<b>(ب) الرايزر:</b>',
+'§Mr = 1.2 × 2 = 2.4 cm',
+'§Dr = Hr = 6 × 2.4 = 14.4 cm',
+'<b>(ج) رسمة القالب:</b> القطعة أفقية ومحورها على خط الفصل، فنص القالب فوق (Cope) ونصه تحت (Drag). الكور بيعمل التجويفين ومسنده بيطلع برّه ناحية الفتحة. الرايزر في الـ Cope فوق الجزء التقيل (الطرف المقفول اللي سمكه أكبر) لأنه آخر حتة بتتجمّد.'+F_MOULD],ans:'Mc = 2.0 cm ، ts = 2.7 min ، Dr = Hr = 14.4 cm'}
+];
+function goProblems(){renderProblems();show('s-problems')}
+function renderProblems(){
+  const box=$('probList');box.innerHTML='';
+  PROBLEMS.forEach(p=>{
+    const c=document.createElement('div');c.className='pcard'+(p.open?' open':'');
+    c.innerHTML='<div class="ptitle">'+p.t+'</div><div class="pq">'+p.q+'</div>'+(p.open?'':'<button class="btn btn-main">👁️ اظهر الحل</button>')+'<div class="psol exbox">'+p.steps.map(s=>s[0]==='§'?'<div class="step en">'+s.slice(1)+'</div>':'<div class="step">'+s+'</div>').join('')+'<span class="ans" dir="auto">'+p.ans+'</span></div>';
+    const b=c.querySelector('button');
+    if(b)b.onclick=()=>{const o=c.classList.toggle('open');b.textContent=o?'🙈 اخفي الحل':'👁️ اظهر الحل'};
+    box.appendChild(c);
+  });
+}
+
+/* ===== الامتحان ===== */
+let items=[],cur=0,t0=0,timer=null,elapsed=0,limit=0,timedOut=false,selMode=0;
+function startExam(){
+  selMode=0;
+  document.querySelectorAll('#chips .chip').forEach(c=>c.classList.toggle('on',c.dataset.m==='0'));
+  $('customMin').style.display='none';$('customMin').value='';
+  $('setup').classList.add('on');
+}
+function closeSetup(){$('setup').classList.remove('on')}
+function pickMode(b){
+  selMode=parseInt(b.dataset.m,10);
+  document.querySelectorAll('#chips .chip').forEach(c=>c.classList.toggle('on',c===b));
+  const ci=$('customMin');ci.style.display=selMode===-1?'block':'none';
+  if(selMode===-1)ci.focus();
+}
+function confirmSetup(){
+  let m=selMode;
+  if(m===-1){m=parseInt($('customMin').value,10);if(!(m>=3&&m<=15)){$('customMin').focus();return}}
+  closeSetup();beginExam(m*60);
+}
+function tick(){
+  elapsed=Math.floor((Date.now()-t0)/1000);
+  if(limit){
+    const rem=Math.max(0,limit-elapsed);
+    $('cTime').textContent=fmt(rem);
+    $('cTime').classList.toggle('low',rem<=60);
+    if(rem<=0){clearInterval(timer);timedOut=true;elapsed=limit;showResult()}
+  }else $('cTime').textContent=fmt(elapsed);
+}
+function beginExam(limitSec){
+  limit=limitSec;timedOut=false;examActive=true;
+  items=shuffle(Q).map(x=>{const opts=shuffle([x.a,...x.w]);return{...x,opts,ci:opts.indexOf(x.a),ans:null}});
+  cur=0;elapsed=0;clearInterval(timer);t0=Date.now();
+  timer=setInterval(tick,1000);
+  $('cTimeIco').textContent=limit?'⏳':'⏱️';
+  $('cTime').classList.remove('low');
+  $('cTime').textContent=limit?fmt(limit):'00:00';$('cTot').textContent=items.length;
+  buildDots();render();show('s-quiz');
+}
+function buildDots(){
+  $('dots').innerHTML='';
+  items.forEach((_,i)=>{const b=document.createElement('button');b.className='dot';b.textContent=i+1;b.onclick=()=>{cur=i;render()};$('dots').appendChild(b)});
+}
+function render(){
+  const it=items[cur];
+  const card=$('qcard');
+  card.innerHTML='<span class="tag'+(it.t==='ca'?' calc':'')+'">'+(it.t==='ca'?'🧮 حسابي':'📖 نظري')+'</span><div class="qtext"></div>'+(it.h?'<div class="hint"></div>':'')+'<div id="opts"></div>';
+  card.querySelector('.qtext').textContent=(cur+1)+'. '+it.q;
+  if(it.h)card.querySelector('.hint').textContent='💡 ('+it.h+')';
+  it.opts.forEach((o,i)=>{
+    const b=document.createElement('button');b.className='opt'+(it.ans===i?' sel':'');b.style.animationDelay=(i*80)+'ms';
+    b.innerHTML='<span class="let">'+L[i]+'</span><span class="txt"></span>';b.querySelector('.txt').textContent=o;
+    b.onclick=()=>pick(i);$('opts').appendChild(b);
+  });
+  const answered=items.filter(x=>x.ans!==null).length;
+  $('cAns').textContent=answered;
+  $('pfill').style.width=(answered/items.length*100)+'%';
+  $('cQ').textContent='سؤال '+(cur+1)+' من '+items.length;
+  $('prevB').style.visibility=cur===0?'hidden':'visible';
+  $('nextB').style.visibility=cur===items.length-1?'hidden':'visible';
+  [...$('dots').children].forEach((d,i)=>{d.className='dot'+(items[i].ans!==null?' ans':'')+(i===cur?' cur':'')});
+}
+function pick(i){
+  items[cur].ans=i;render();
+  if(cur<items.length-1)setTimeout(()=>{cur++;render()},380);
+}
+function go(d){cur=Math.min(items.length-1,Math.max(0,cur+d));render()}
+function submitExam(){
+  const left=items.filter(x=>x.ans===null).length;
+  if(left>0&&!confirm('لسه فاضل '+left+' سؤال من غير إجابة. متأكد إنك عايز تسلّم؟'))return;
+  clearInterval(timer);showResult();
+}
+
+/* ===== النتيجة ===== */
+let certKind=0,pctFinal=0,nameFinal='';
+function showResult(){
+  examActive=false;
+  const ok=items.filter(x=>x.ans===x.ci).length,tot=items.length,pct=Math.round(ok/tot*100);
+  pctFinal=pct;
+  nameFinal=($('studentName').value||'').trim()||'الطالب العزيز';
+  $('rName').textContent=nameFinal;
+  $('rOk').textContent=ok;$('rBad').textContent=tot-ok;$('rTot').textContent=tot;
+  $('rTime').textContent='⏱️ '+fmt(elapsed);
+  const to=$('rTimeout');to.style.display=timedOut?'block':'none';
+  if(timedOut)to.textContent='⏰ الوقت خلص والامتحان اتسلّم تلقائي على إجاباتك';
+  let msg,grade;
+  if(pct>=85){msg='🌟 ماشاءالله يبني مكانك كلية طب والله 👏';grade=0}
+  else if(pct>=70){msg='💪 كويس يبني والله بس في احسن من كدا';grade=1}
+  else{msg='😔 انت مش نافع كدا وهتشيل المادة';grade=2}
+  $('rMsg').textContent=msg;
+  $('ring').style.stroke=['#5483B3','#7DA0CA','#E17055'][grade];
+  show('s-result');
+  const ring=$('ring');ring.style.strokeDashoffset=534;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ring.style.strokeDashoffset=534*(1-pct/100)}));
+  const t1=performance.now();(function step(t){const p=Math.min(1,(t-t1)/1600);const e=1-Math.pow(1-p,3);$('pctN').textContent=Math.round(pct*e);if(p<1)requestAnimationFrame(step)})(t1);
+  if(grade===0)setTimeout(confetti,500);
+  certKind=grade;
+  (document.fonts?Promise.all([document.fonts.load('700 40px Cairo'),document.fonts.load('700 30px Outfit')]).catch(()=>{}):Promise.resolve()).then(drawCert);
+  buildReview();
+}
+function buildReview(){
+  const box=$('rev');box.innerHTML='';
+  items.forEach((it,i)=>{
+    const ok=it.ans===it.ci;
+    const d=document.createElement('div');d.className='ri '+(ok?'ok':'no');
+    const h=document.createElement('div');h.className='q';h.textContent=(i+1)+'. '+it.q;
+    const m=document.createElement('div');m.className='mine';
+    m.textContent=it.ans===null?'❌ لم تجب على هذا السؤال':(ok?'✅ إجابتك: ':'❌ إجابتك: ')+L[it.ans]+') '+it.opts[it.ans];
+    d.append(h,m);
+    if(!ok){const c=document.createElement('div');c.className='corr';c.textContent='✔️ الإجابة الصحيحة: '+L[it.ci]+') '+it.a;d.appendChild(c)}
+    const w=document.createElement('div');w.className='why';w.textContent='💡 '+it.e;d.appendChild(w);
+    box.appendChild(d);
+  });
+}
+
+/* ===== الشهادة ===== */
+function rr(x,X,Y,w,h,r){x.beginPath();x.moveTo(X+r,Y);x.arcTo(X+w,Y,X+w,Y+h,r);x.arcTo(X+w,Y+h,X,Y+h,r);x.arcTo(X,Y+h,X,Y,r);x.arcTo(X,Y,X+w,Y,r);x.closePath()}
+function starPath(x,cx,cy,R,r,n){x.beginPath();for(let i=0;i<n*2;i++){const a=Math.PI/n*i-Math.PI/2,rad=i%2?r:R;x.lineTo(cx+Math.cos(a)*rad,cy+Math.sin(a)*rad)}x.closePath()}
+function diamond(x,cx,cy,s){x.beginPath();x.moveTo(cx,cy-s);x.lineTo(cx+s,cy);x.lineTo(cx,cy+s);x.lineTo(cx-s,cy);x.closePath();x.fill()}
+function sparkle(x,cx,cy,r){x.beginPath();for(let i=0;i<8;i++){const a=Math.PI/4*i-Math.PI/2,rad=i%2?r*.28:r;x.lineTo(cx+Math.cos(a)*rad,cy+Math.sin(a)*rad)}x.closePath();x.fill()}
+function metalGrad(x,x1,y1,x2,y2,m){const g=x.createLinearGradient(x1,y1,x2,y2);m.forEach((c,i)=>g.addColorStop(i/(m.length-1),c));return g}
+function drawCert(){
+  const c=$('cert'),x=c.getContext('2d'),W=1000,H=700;
+  const TH=[
+    {bg:['#021024','#052659'],metal:['#5483B3','#C1E8FF','#7DA0CA','#FFFFFF','#5483B3'],main:'#C1E8FF',soft:'#E8F5FF',ink:'#FFFFFF',pill:'rgba(193,232,255,.16)',rib:'#5483B3',stars:3,title:'شهادة تفوق',em:'👑',line:'تُمنح هذه الشهادة إلى',foot:'بتقدير: ممتاز، ماشاء الله عليك 🌟'},
+    {bg:['#021024','#5483B3'],metal:['#052659','#C1E8FF','#7DA0CA','#FFFFFF','#052659'],main:'#7DA0CA',soft:'#C1E8FF',ink:'#F2F8FF',pill:'rgba(125,160,202,.18)',rib:'#052659',stars:2,title:'شهادة اجتهاد',em:'🎖️',line:'تُمنح هذه الشهادة إلى',foot:'بتقدير: جيد جدًا، كمّل وهتوصل للقمة 💪'},
+    {bg:['#052659','#021024'],metal:['#021024','#7DA0CA','#5483B3','#C1E8FF','#021024'],main:'#5483B3',soft:'#C1E8FF',ink:'#C1E8FF',pill:'rgba(84,131,179,.2)',rib:'#052659',stars:1,title:'شهادة تعاطف',em:'🧻',line:'نتعاطف بكل صدق مع',foot:'بتقدير: المنهج كان بيناديك وإنت كنت مشغول 📵'}
+  ][certKind];
+  x.clearRect(0,0,W,H);x.direction='rtl';x.textAlign='center';x.textBaseline='alphabetic';
+  let g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,TH.bg[0]);g.addColorStop(1,TH.bg[1]);
+  x.fillStyle=g;x.fillRect(0,0,W,H);
+  x.save();x.strokeStyle=TH.soft;x.globalAlpha=.05;x.lineWidth=2;
+  for(let i=-H;i<W;i+=26){x.beginPath();x.moveTo(i,0);x.lineTo(i+H,H);x.stroke()}
+  x.restore();
+  const rg=x.createRadialGradient(W/2,H/2-20,30,W/2,H/2,480);rg.addColorStop(0,'rgba(255,255,255,.16)');rg.addColorStop(1,'rgba(255,255,255,0)');
+  x.fillStyle=rg;x.fillRect(0,0,W,H);
+  x.fillStyle=TH.soft;
+  [[150,165,9],[855,175,11],[118,340,7],[885,350,8],[175,480,6],[300,96,7],[705,100,8],[600,640,6],[400,645,7]].forEach(([px,py,pr],i)=>{x.globalAlpha=.55+(i%3)*.15;sparkle(x,px,py,pr)});
+  x.globalAlpha=1;
+  x.strokeStyle=metalGrad(x,0,0,W,H,TH.metal);x.lineWidth=18;x.strokeRect(22,22,W-44,H-44);
+  x.strokeStyle=TH.main;x.lineWidth=2.5;x.strokeRect(46,46,W-92,H-92);
+  x.lineWidth=1;x.globalAlpha=.8;x.strokeRect(56,56,W-112,H-112);x.globalAlpha=1;
+  [[W/2,22],[W/2,H-22],[22,H/2],[W-22,H/2]].forEach(([cx,cy])=>{
+    x.fillStyle=TH.bg[0];diamond(x,cx,cy,15);x.fillStyle=metalGrad(x,cx-12,cy-12,cx+12,cy+12,TH.metal);diamond(x,cx,cy,11);
+  });
+  [[46,46],[W-46,46],[46,H-46],[W-46,H-46]].forEach(([cx,cy])=>{
+    x.fillStyle=metalGrad(x,cx-22,cy-22,cx+22,cy+22,TH.metal);x.beginPath();x.arc(cx,cy,22,0,7);x.fill();
+    x.fillStyle=TH.bg[0];x.beginPath();x.arc(cx,cy,15,0,7);x.fill();
+    x.fillStyle=TH.rib;diamond(x,cx,cy,9);
+    x.fillStyle=TH.soft;x.beginPath();x.arc(cx,cy,2.5,0,7);x.fill();
+  });
+  const bx=W/2,by=122;
+  x.save();x.shadowColor='rgba(0,0,0,.45)';x.shadowBlur=14;x.shadowOffsetY=5;
+  x.fillStyle=metalGrad(x,bx-60,by-60,bx+60,by+60,TH.metal);x.beginPath();x.arc(bx,by,60,0,7);x.fill();x.restore();
+  x.fillStyle=TH.bg[0];x.beginPath();x.arc(bx,by,51,0,7);x.fill();
+  x.strokeStyle=TH.main;x.lineWidth=2;x.beginPath();x.arc(bx,by,45,0,7);x.stroke();
+  x.fillStyle=TH.ink;x.font='56px serif';x.fillText(TH.em,bx,by+19);
+  for(let i=0;i<TH.stars;i++){
+    const sx=bx+(i-(TH.stars-1)/2)*36;
+    starPath(x,sx,208,13,5.5,5);x.fillStyle=metalGrad(x,sx-13,195,sx+13,221,TH.metal);x.fill();x.strokeStyle=TH.bg[0];x.lineWidth=1;x.stroke();
+  }
+  x.font='800 58px Cairo, sans-serif';
+  const tw=x.measureText(TH.title).width/2;
+  x.save();x.shadowColor='rgba(0,0,0,.5)';x.shadowBlur=8;x.shadowOffsetY=3;
+  x.fillStyle=metalGrad(x,W/2-tw,0,W/2+tw,0,[TH.soft,TH.main,TH.soft]);x.fillText(TH.title,W/2,284);x.restore();
+  [-1,1].forEach(d=>{
+    const x1=W/2+d*(tw+26),x2=W/2+d*(tw+160);
+    const lg=x.createLinearGradient(x1,0,x2,0);lg.addColorStop(0,TH.main);lg.addColorStop(1,'rgba(255,255,255,0)');
+    x.strokeStyle=lg;x.lineWidth=3;x.beginPath();x.moveTo(x1,264);x.lineTo(x2,264);x.stroke();
+    x.fillStyle=TH.main;diamond(x,x1,264,6);
+  });
+  x.fillStyle=TH.ink;x.globalAlpha=.9;x.font='600 28px Cairo, sans-serif';x.fillText(TH.line,W/2,330);x.globalAlpha=1;
+  let fs=72;x.font='800 '+fs+'px Cairo, sans-serif';
+  while(x.measureText(nameFinal).width>640&&fs>30){fs-=2;x.font='800 '+fs+'px Cairo, sans-serif'}
+  const nw0=x.measureText(nameFinal).width/2;
+  x.save();x.shadowColor='rgba(0,0,0,.5)';x.shadowBlur=10;x.shadowOffsetY=3;
+  x.fillStyle=metalGrad(x,W/2-nw0,0,W/2+nw0,0,[TH.main,TH.soft,TH.main,TH.soft,TH.main]);x.fillText(nameFinal,W/2,410);x.restore();
+  const nw=Math.max(nw0+40,190);
+  const ug=x.createLinearGradient(W/2-nw,0,W/2+nw,0);ug.addColorStop(0,'rgba(255,255,255,0)');ug.addColorStop(.2,TH.main);ug.addColorStop(.8,TH.main);ug.addColorStop(1,'rgba(255,255,255,0)');
+  x.strokeStyle=ug;x.lineWidth=3;x.beginPath();x.moveTo(W/2-nw,430);x.lineTo(W/2+nw,430);x.stroke();
+  x.fillStyle=TH.rib;diamond(x,W/2,430,8);x.fillStyle=TH.soft;diamond(x,W/2,430,4);
+  x.fillStyle=TH.ink;x.font='600 29px Cairo, sans-serif';
+  x.fillText('في مادة «'+SUBJECT+'» بنسبة '+pctFinal+'%',W/2,486);
+  let pf=27;x.font='700 '+pf+'px Cairo, sans-serif';
+  while(x.measureText(TH.foot).width+70>560&&pf>18){pf--;x.font='700 '+pf+'px Cairo, sans-serif'}
+  const pw=x.measureText(TH.foot).width+70;
+  rr(x,W/2-pw/2,514,pw,56,28);x.fillStyle=TH.pill;x.fill();x.strokeStyle=TH.main;x.lineWidth=1.8;x.stroke();
+  x.fillStyle=TH.ink;x.fillText(TH.foot,W/2,552);
+  const sx=858,sy=520;
+  [-1,1].forEach(d=>{
+    x.beginPath();x.moveTo(sx+d*8,sy+30);x.lineTo(sx+d*46,sy+114);x.lineTo(sx+d*25,sy+102);x.lineTo(sx+d*8,sy+120);x.lineTo(sx-d*2,sy+40);x.closePath();
+    x.fillStyle=TH.rib;x.fill();x.strokeStyle='rgba(255,255,255,.45)';x.lineWidth=1.5;x.stroke();
+  });
+  x.save();x.shadowColor='rgba(0,0,0,.5)';x.shadowBlur=12;x.shadowOffsetY=4;
+  x.beginPath();
+  for(let i=0;i<48;i++){const a=Math.PI/24*i,r=i%2?60:71;x.lineTo(sx+Math.cos(a)*r,sy+Math.sin(a)*r)}
+  x.closePath();x.fillStyle=metalGrad(x,sx-70,sy-70,sx+70,sy+70,TH.metal);x.fill();x.restore();
+  x.fillStyle=TH.bg[0];x.beginPath();x.arc(sx,sy,50,0,7);x.fill();
+  x.strokeStyle=TH.main;x.lineWidth=2;x.beginPath();x.arc(sx,sy,44,0,7);x.stroke();
+  x.fillStyle=TH.main;x.font='700 34px Outfit, sans-serif';x.direction='ltr';x.fillText(pctFinal+'%',sx,sy+12);x.direction='rtl';
+  x.strokeStyle=TH.main;x.lineWidth=2;x.beginPath();x.moveTo(110,614);x.lineTo(330,614);x.stroke();
+  x.fillStyle=TH.ink;x.font='600 24px Cairo, sans-serif';x.fillText(new Date().toLocaleDateString('ar-EG'),220,602);
+}
+function dlCert(){
+  drawCert();
+  $('cert').toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='certificate.png';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
+}
+
+/* ===== كونفيتي ===== */
+function confetti(){
+  const c=$('confetti'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;
+  const cols=['#052659','#5483B3','#7DA0CA','#021024','#FFFFFF'];
+  const P=Array.from({length:160},()=>({x:Math.random()*c.width,y:-20-Math.random()*c.height*.5,vx:(Math.random()-.5)*4,vy:2+Math.random()*4,s:6+Math.random()*8,r:Math.random()*6,vr:(Math.random()-.5)*.3,c:cols[Math.floor(Math.random()*cols.length)]}));
+  const end=performance.now()+3800;
+  (function f(t){x.clearRect(0,0,c.width,c.height);
+    P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);x.restore()});
+    if(t<end)requestAnimationFrame(f);else x.clearRect(0,0,c.width,c.height)})(performance.now());
+}
+</script>
+</body>
+</html>
